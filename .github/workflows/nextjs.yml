@@ -1,5 +1,10 @@
 name: Deploy to GitHub Pages
 
+# Grant OIDC and read access so deploy-pages can fetch the id-token
+permissions:
+  id-token: write      # allow OIDC token requests
+  contents: read       # allow checkout
+
 on:
   push:
     branches: [main]
@@ -31,7 +36,7 @@ jobs:
         run: npm ci
 
       - name: Build static site
-        run: npm run build        # (or: npm run export)
+        run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
