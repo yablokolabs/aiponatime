@@ -3,6 +3,7 @@ name: Deploy to GitHub Pages
 # Grant OIDC and read access so deploy-pages can fetch the id-token
 permissions:
   id-token: write      # allow OIDC token requests
+  pages: write
   contents: read       # allow checkout
 
 on:
