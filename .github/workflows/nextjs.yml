@@ -14,29 +14,29 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: package     # 👈 everything runs under package/
+        working-directory: package
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20.x'
-          cache: 'yarn'
-          cache-dependency-path: 'package/yarn.lock'  # 👈 point to your lockfile
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: npm ci
 
       - name: Build static site
-        run: yarn build
+        run: npm run build        # (or: npm run export)
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'package/out'      # 👈 path is now relative to repo root
+          path: 'package/out'
 
   deploy:
     environment:
