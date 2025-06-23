@@ -53,9 +53,9 @@ const Hero = () => {
               transition={{ duration: 0.5, delay: 0.1 }}
             >
               <div className="relative z-10">
-                <h1 className="text-6xl sm:text-65xl font-bold bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-400 bg-clip-text text-transparent mt-6 mb-8 bg-[length:300%_auto] animate-[gradientShine_6s_ease_infinite]">
+              <h1 className="text-6xl sm:text-65xl font-bold bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-400 bg-clip-text text-transparent mt-6 mb-8 bg-[length:300%_auto] animate-[gradientShine_6s_ease_infinite]">
                   Personalized Storybooks
-                  <span className="block text-4xl sm:text-5xl mt-4 bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent">
+                  <span className="block text-4xl sm:text-5xl mt-4 bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent leading-[1.11]">
                     powered by AI Magic
                   </span>
                 </h1>
