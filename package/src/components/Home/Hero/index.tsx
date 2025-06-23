@@ -81,9 +81,9 @@ const Hero = () => {
             <Image
               src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/hero/banner-image.png`}
               alt="banner image"
-              width={600}
-              height={600}
-              className="w-full"
+              width={500}
+              height={500}
+              className="w-4/5 mx-auto"
             />
           </div>
         </div>
