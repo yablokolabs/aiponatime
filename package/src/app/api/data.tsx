@@ -87,11 +87,11 @@ export const postData: { heading: string; imgSrc: string; }[] = [
   },
   {
     heading: "Underwater Kingdom",
-    imgSrc: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/featured/feat1.jpg`,
+    imgSrc: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/featured/feat3.jpg`,
   },
   {
     heading: "Fairy Tale Magic",
-    imgSrc: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/featured/feat2.jpg`,
+    imgSrc: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/featured/feat4.jpg`,
   },
 ];
 
