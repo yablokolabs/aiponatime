@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import Script from "next/script";
 import { Icon } from "@iconify/react";
 import { ProductType } from "@/app/api/data";
 
@@ -85,6 +86,14 @@ const footer = () => {
           </div>
         </div>
       </div>
+      {/* Cloudflare Web Analytics */}
+      <Script 
+        id="cf-analytics"
+        defer
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon='{"token": "9b7ada4ada9b4353a7f5a62cb133e34e"}'
+        strategy="afterInteractive"
+      />
     </div>
   )
 }
