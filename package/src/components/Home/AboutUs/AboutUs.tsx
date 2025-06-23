@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ColorfulSection } from '@/components/Common/ColorfulSection';
 import { ColorfulButton } from '@/components/Common/ColorfulButton';
+import { BackgroundGradient } from '@/components/Common/BackgroundGradient';
 
 const features = [
   {
@@ -28,13 +29,14 @@ const features = [
 
 export const AboutUs = () => {
   return (
-    <ColorfulSection 
-      id="about"
-      title="Our Magical Storytelling"
-      subtitle="Why Choose Us"
-      gradientFrom="from-blue-50"
-      gradientTo="to-purple-50"
-    >
+    <BackgroundGradient className="py-20 md:py-28">
+      <ColorfulSection 
+        id="about"
+        title="Our Magical Storytelling"
+        subtitle="Why Choose Us"
+        gradientFrom="from-blue-50"
+        gradientTo="to-purple-50"
+      >
       <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
@@ -112,7 +114,8 @@ export const AboutUs = () => {
           </motion.div>
         ))}
       </div>
-    </ColorfulSection>
+      </ColorfulSection>
+    </BackgroundGradient>
   );
 };
 
