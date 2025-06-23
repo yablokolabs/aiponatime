@@ -8,7 +8,7 @@ const Insta = () => {
         {/* Image Container 1 */}
         <div className="relative group mx-auto">
           <Image
-            src="/images/insta/insta1.png"
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/insta/insta1.png`}
             width={306}
             height={306}
             alt="instaOne"
@@ -32,7 +32,7 @@ const Insta = () => {
         {/* Image Container 2 */}
         <div className="relative group mx-auto">
           <Image
-            src="/images/insta/insta2.png"
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/insta/insta2.png`}
             width={306}
             height={306}
             alt="instaTwo"
@@ -56,7 +56,7 @@ const Insta = () => {
         {/* Image Container 3 */}
         <div className="relative group mx-auto">
           <Image
-            src="/images/insta/insta3.png"
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/insta/insta3.png`}
             width={306}
             height={306}
             alt="instaThree"
@@ -80,7 +80,7 @@ const Insta = () => {
         {/* Image Container 4 */}
         <div className="relative group mx-auto">
           <Image
-            src="/images/insta/insta4.png"
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/insta/insta4.png`}
             width={306}
             height={306}
             alt="instaFour"

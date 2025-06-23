@@ -15,9 +15,9 @@ export const metadata: Metadata = {
   description: 'Create magical, personalized storybooks for children with AI. Spark their love of reading with custom stories where they are the hero!',
   metadataBase: new URL('https://aiponatime.com'),
   icons: {
-    icon: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
-    shortcut: '/favicon.ico'
+    icon: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/favicon.ico`,
+    apple: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/apple-touch-icon.png`,
+    shortcut: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/favicon.ico`
   },
   openGraph: {
     title: 'AiPonATime™ | Personalized AI Storybooks for Kids',

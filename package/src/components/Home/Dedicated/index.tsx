@@ -8,7 +8,7 @@ const Dedicated = () => {
       <div className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md)">
         <div className="grid grid-cols-1 lg:grid-cols-12">
           <Image
-            src="/images/dedicated/spiral.svg"
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/dedicated/spiral.svg`}
             height={272}
             width={686}
             alt="spiral-design"
@@ -18,7 +18,7 @@ const Dedicated = () => {
           <div className="col-span-12 lg:col-span-6 flex items-center justify-center">
             <div className="relative w-full max-w-md h-auto">
               <Image
-                src="/images/dedicated/person_staff.jpeg"
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/dedicated/person_staff.jpeg`}
                 alt="Happy child reading a book"
                 width={500}
                 height={650}
@@ -32,7 +32,7 @@ const Dedicated = () => {
           <div className="col-span-12 lg:col-span-6">
             <div className="relative">
               <Image
-                src="/images/dedicated/comma.svg"
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/dedicated/comma.svg`}
                 alt="comma-image"
                 width={200}
                 height={106}

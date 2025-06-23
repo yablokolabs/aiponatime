@@ -10,7 +10,7 @@ const Aboutus = () => {
       <div className="container mx-auto lg:max-w-(--breakpoint-xl) relative z-1 md:max-w-(--breakpoint-md)">
         <div className="lg:p-12 px-2 bg-grey dark:bg-darkmode rounded-3xl">
           <Image
-            src="/images/aboutus/dots.svg"
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/aboutus/dots.svg`}
             width={100}
             height={100}
             alt="dots-image"

@@ -6,7 +6,7 @@ import Link from "next/link";
 const Digital = () => {
   return (
     <section className="relative bg-cover bg-center dark:bg-darkmode overflow-hidden">
-      <div className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md) rounded-3xl bg-primary bg-[url('/images/digital/bg.svg')] bg-no-repeat bg-right-top pb-60 relative">
+      <div className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md) rounded-3xl bg-primary bg-no-repeat bg-right-top pb-60 relative" style={{ backgroundImage: `url('${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/digital/bg.svg')` }}>
         <div className="grid grid-cols-1 lg:grid-cols-2">
           {/* COLUMN-1 */}
           <div className="pt-24 lg:pl-24">
@@ -28,7 +28,7 @@ const Digital = () => {
         </div>
         <div className="absolute -bottom-16 -right-20">
           <Image
-            src="/images/digital/girldoodle.svg"
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/digital/girldoodle.svg`}
             alt="doodle"
             width={815}
             height={691}

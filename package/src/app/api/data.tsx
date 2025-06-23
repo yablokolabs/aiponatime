@@ -22,21 +22,21 @@ export const ProductType: { id: number; section: string; link: string[]; }[] = [
 export const Aboutdata: { heading: string; imgSrc: string; paragraph: string; link: string; }[] = [
   {
     heading: "How It Works",
-    imgSrc: "/images/aboutus/imgOne.svg",
+    imgSrc: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/aboutus/imgOne.svg`,
     paragraph:
       "Parents enter their child's name, age, and interests and complete checkout — we handle the rest.",
     link: "Learn more",
   },
   {
     heading: "AI Story Generation",
-    imgSrc: "/images/aboutus/imgTwo.svg",
+    imgSrc: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/aboutus/imgTwo.svg`,
     paragraph:
       "Our storytelling AI crafts a unique adventure starring your child, weaving their interests into every page.",
     link: "Learn more",
   },
   {
     heading: "Delivery Options",
-    imgSrc: "/images/aboutus/imgThree.svg",
+    imgSrc: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/aboutus/imgThree.svg`,
     paragraph:
       "Receive a downloadable PDF or a beautifully printed paperback — the perfect gift beyond the screen.",
     link: "Learn more",
@@ -47,51 +47,51 @@ export const DataType: { profession: string; name: string; imgSrc: string; }[] =
   {
     profession: "Co-founder",
     name: "John Doe",
-    imgSrc: "/images/wework/avatar.svg",
+    imgSrc: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/wework/avatar.svg`,
   },
   {
     profession: "Co-founder",
     name: "John Doe",
-    imgSrc: "/images/wework/avatar3.svg",
+    imgSrc: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/wework/avatar3.svg`,
   },
   {
     profession: "Co-founder",
     name: "John Doe",
-    imgSrc: "/images/wework/avatar4.svg",
+    imgSrc: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/wework/avatar4.svg`,
   },
   {
     profession: "Co-founder",
     name: "John Doe",
-    imgSrc: "/images/wework/avatar.svg",
+    imgSrc: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/wework/avatar.svg`,
   },
   {
     profession: "Co-founder",
     name: "John Doe",
-    imgSrc: "/images/wework/avatar3.svg",
+    imgSrc: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/wework/avatar3.svg`,
   },
   {
     profession: "Co-founder",
     name: "John Doe",
-    imgSrc: "/images/wework/avatar4.svg",
+    imgSrc: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/wework/avatar4.svg`,
   },
 ];
 
 export const postData: { heading: string; imgSrc: string; }[] = [
   {
     heading: "Adventure in Space",
-    imgSrc: "/images/featured/feat1.jpg",
+    imgSrc: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/featured/feat1.jpg`,
   },
   {
     heading: "Dinosaur Discovery",
-    imgSrc: "/images/featured/feat2.jpg",
+    imgSrc: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/featured/feat2.jpg`,
   },
   {
     heading: "Underwater Kingdom",
-    imgSrc: "/images/featured/feat1.jpg",
+    imgSrc: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/featured/feat1.jpg`,
   },
   {
     heading: "Fairy Tale Magic",
-    imgSrc: "/images/featured/feat2.jpg",
+    imgSrc: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/featured/feat2.jpg`,
   },
 ];
 
@@ -154,7 +154,7 @@ export const Article: { time: string; heading: string; heading2: string; date: s
     heading2: "Stories for Children",
     name: "Published on StoryTime Insights",
     date: "June 15, 2025",
-    imgSrc: "/images/articles/article.png",
+    imgSrc: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/articles/article.png`,
   },
   {
     time: "6 min",
@@ -162,7 +162,7 @@ export const Article: { time: string; heading: string; heading2: string; date: s
     heading2: "Children's Literature",
     name: "Published on TechForTots",
     date: "June 10, 2025",
-    imgSrc: "/images/articles/article2.png",
+    imgSrc: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/articles/article2.png`,
   },
   {
     time: "7 min",
@@ -170,7 +170,7 @@ export const Article: { time: string; heading: string; heading2: string; date: s
     heading2: "Through Custom Stories",
     name: "Published on Parenting Today",
     date: "June 5, 2025",
-    imgSrc: "/images/articles/article3.png",
+    imgSrc: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/articles/article3.png`,
   },
   {
     time: "9 min",
@@ -178,7 +178,7 @@ export const Article: { time: string; heading: string; heading2: string; date: s
     heading2: "Personalized Learning",
     name: "Published on EduTech Journal",
     date: "May 28, 2025",
-    imgSrc: "/images/articles/article.png",
+    imgSrc: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/articles/article.png`,
   },
   {
     time: "5 min",
@@ -186,7 +186,7 @@ export const Article: { time: string; heading: string; heading2: string; date: s
     heading2: "Their Own Story",
     name: "Published on Child Development",
     date: "May 20, 2025",
-    imgSrc: "/images/articles/article2.png",
+    imgSrc: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/articles/article2.png`,
   },
   {
     time: "10 min",
@@ -194,6 +194,6 @@ export const Article: { time: string; heading: string; heading2: string; date: s
     heading2: "The Making of a Story",
     name: "Published on Creative Minds",
     date: "May 15, 2025",
-    imgSrc: "/images/articles/article3.png",
+    imgSrc: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/articles/article3.png`,
   },
 ];
