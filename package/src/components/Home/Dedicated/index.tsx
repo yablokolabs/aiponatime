@@ -19,7 +19,7 @@ const Dedicated = () => {
             <div className="relative w-full max-w-md h-auto">
               <Image
                 src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/dedicated/person_staff.jpeg`}
-                alt="Happy child reading a book"
+                alt="Co-Founder"
                 width={500}
                 height={650}
                 className="rounded-2xl shadow-xl object-cover mx-auto"
@@ -46,7 +46,7 @@ const Dedicated = () => {
               Parents share their child’s name, age, and interests, and our AI crafts a one-of-a-kind storybook adventure just for them.
             </p>
             <p className="text-2xl font-semibold mt-12 lg:pl-32 relative lg:before:block before:hidden before:absolute before:bg-black before:h-0.5 before:w-24 before:left-0 before:bottom-1/2 text-center lg:text-start">
-              AIponATime<sup className="align-super text-sm">™</sup> Team
+              AIponATime<sup className="align-super text-sm">™</sup> Co-Founder
             </p>
           </div>
         </div>
