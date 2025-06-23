@@ -39,7 +39,7 @@ const Hero = () => {
           </div>
           <div className="col-span-7">
             <Image
-              src="/images/hero/banner-image.png"
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/hero/banner-image.png`}
               alt="banner image"
               width={600}
               height={600}

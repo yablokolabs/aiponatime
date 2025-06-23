@@ -14,16 +14,36 @@ const footer = () => {
             <p className='text-white/70 text-lg mb-6 max-w-xs'>Creating magical, personalized storybooks that inspire a love for reading in every child.</p>
             <div className='flex gap-4'>
               <Link href="https://facebook.com" className="footer-icons hover:bg-primary transition-colors duration-200 p-2 rounded-full">
-                <Image src={'/images/footer/vec.svg'} alt="Facebook" width={15} height={20} />
+                <Image 
+                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/footer/vec.svg`} 
+                  alt="Facebook" 
+                  width={15} 
+                  height={20} 
+                />
               </Link>
               <Link href="https://twitter.com" className="footer-icons hover:bg-primary transition-colors duration-200 p-2 rounded-full">
-                <Image src={'/images/footer/twitter.svg'} alt="Twitter" width={20} height={20} />
+                <Image 
+                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/footer/twitter.svg`} 
+                  alt="Twitter" 
+                  width={20} 
+                  height={20} 
+                />
               </Link>
               <Link href="https://instagram.com" className="footer-icons hover:bg-primary transition-colors duration-200 p-2 rounded-full">
-                <Image src={'/images/footer/instagram.svg'} alt="Instagram" width={20} height={20} />
+                <Image 
+                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/footer/instagram.svg`} 
+                  alt="Instagram" 
+                  width={20} 
+                  height={20} 
+                />
               </Link>
               <Link href="https://pinterest.com" className="footer-icons hover:bg-primary transition-colors duration-200 p-2 rounded-full">
-                <Image src={'/images/footer/pinterest.svg'} alt="Pinterest" width={20} height={20} />
+                <Image 
+                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/footer/pinterest.svg`} 
+                  alt="Pinterest" 
+                  width={20} 
+                  height={20} 
+                />
               </Link>
             </div>
           </div>

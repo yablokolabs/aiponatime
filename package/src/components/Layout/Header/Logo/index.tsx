@@ -6,7 +6,7 @@ const Logo: React.FC = () => {
     <Link href="/" className="relative block bg-transparent p-1.5 -m-1.5">
       <div className="relative overflow-hidden">
         <Image 
-          src="/images/Logo-pica.png" 
+          src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/Logo-pica.png`} 
           alt="AIponaTime" 
           width={36}
           height={14}
