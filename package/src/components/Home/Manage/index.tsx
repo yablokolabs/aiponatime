@@ -8,8 +8,8 @@ const plans = [
   {
     heading: "Story Starter",
     price: {
-      monthly: 19,
-      yearly: 190,
+      monthly: 29,
+      yearly: 261,
     },
     user: "per month",
     features: {
@@ -23,8 +23,8 @@ const plans = [
   {
     heading: "Story Explorer",
     price: {
-      monthly: 29,
-      yearly: 290,
+      monthly: 49,
+      yearly: 441,
     },
     user: "per month",
     features: {
@@ -38,8 +38,8 @@ const plans = [
   {
     heading: "Story Legend",
     price: {
-      monthly: 59,
-      yearly: 590,
+      monthly: 89,
+      yearly: 801,
     },
     user: "per month",
     features: {
@@ -115,7 +115,7 @@ const Manage = () => {
             <div className="shadow-manage-shadow border border-border text-center p-10" key={i}>
               <h4 className="text-2xl font-bold mb-3">{items.heading}</h4>
               <h2 className="text-6xl font-extrabold mb-3">${items.price}</h2>
-              <p className="text-14 font-medium text-darkgrey mb-6">{items.user}</p>
+              <p className="text-14 font-medium text-darkgrey mb-6">{selectedCategory === "yearly" ? "per year" : "per month"}</p>
 
               <button className="text-14 font-bold text-primary bg-transparent hover:bg-primary hover:text-white border-2 border-primary rounded-full py-4 px-12 mb-6">
                 Start My 15-day Trial
