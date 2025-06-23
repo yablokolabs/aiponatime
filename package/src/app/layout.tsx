@@ -1,14 +1,26 @@
-import { Urbanist } from 'next/font/google'
+import { Urbanist, Fredoka } from 'next/font/google'
 import RemoveNextBadge from '@/components/RemoveNextBadge'
 import './globals.css'
 import Header from '@/components/Layout/Header'
 import Footer from '@/components/Layout/Footer'
-// import { ThemeProvider } from 'next-themes'
+import { ThemeProvider } from '@/theme/ThemeProvider'
+import { KidsBackground } from '@/components/Common/KidsBackground'
+import { MagicDust } from '@/components/Common/MagicDust'
 import ScrollToTop from '@/components/ScrollToTop'
 import Aoscompo from '@/utils/aos'
 import { Metadata } from 'next'
+import { ReactNode } from 'react'
 
-const font = Urbanist({ subsets: ['latin'] })
+const urbanist = Urbanist({ 
+  subsets: ['latin'],
+  variable: '--font-urbanist',
+})
+
+const fredoka = Fredoka({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-fredoka',
+})
 
 export const metadata: Metadata = {
   title: 'AiPonATime™ | Personalized AI Storybooks for Kids',
@@ -20,8 +32,8 @@ export const metadata: Metadata = {
     shortcut: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/favicon.ico`
   },
   openGraph: {
-    title: 'AiPonATime™ | Personalized AI Storybooks for Kids',
-    description: 'Create magical, personalized storybooks for children with AI. Spark their love of reading with custom stories where they are the hero!',
+    title: 'AiPonATime - Magical AI Storytelling for Kids',
+    description: 'Create personalized, colorful storybooks that bring your child\'s imagination to life with AI-powered storytelling.',
     images: [
       {
         url: '/images/Logo-pica.png',
@@ -36,19 +48,33 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: ReactNode
 }>) {
 
   return (
-    <html lang='en' suppressHydrationWarning>
-      <body className={`${font.className}`}>
-        <RemoveNextBadge />
-        <Aoscompo>
-          <Header />
-          {children}
-          <Footer />
-        </Aoscompo>
-        <ScrollToTop />
+    <html 
+      lang="en" 
+      suppressHydrationWarning
+      className={`${urbanist.variable} ${fredoka.variable} scroll-smooth`}
+    >
+      <body className="min-h-screen flex flex-col bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50 overflow-x-hidden">
+        <ThemeProvider>
+          <KidsBackground />
+          <MagicDust />
+          <div className="relative z-10 flex flex-col min-h-screen">
+            <RemoveNextBadge />
+            <Aoscompo>
+              <div className='flex-1 flex flex-col'>
+                <Header />
+                <main className='flex-1'>
+                  {children}
+                </main>
+                <Footer />
+              </div>
+            </Aoscompo>
+            <ScrollToTop />
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   )

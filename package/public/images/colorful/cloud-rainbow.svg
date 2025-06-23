@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100%" height="100%" viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="cloudGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C9C9FF" />
+      <stop offset="25%" stop-color="#A0E7E5" />
+      <stop offset="50%" stop-color="#B5EAD7" />
+      <stop offset="75%" stop-color="#E2F0CB" />
+      <stop offset="100%" stop-color="#FFDAC1" />
+    </linearGradient>
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="10" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  
+  <!-- Main cloud -->
+  <g filter="url(#softGlow)">
+    <path 
+      d="M250,100 C280,100 300,80 300,50 C300,20 270,0 240,0 C230,0 220,5 215,10 C200,5 185,0 170,0 C140,0 115,25 110,55 C100,50 90,45 80,45 C50,45 30,70 30,100 C30,130 50,150 80,150 L250,150 C280,150 300,130 300,100 C300,70 280,50 250,50 C250,50 250,100 250,100 Z" 
+      fill="url(#cloudGradient)" 
+      stroke="white"
+      stroke-width="3"
+    />
+  </g>
+  
+  <!-- Rainbow effect under cloud -->
+  <g opacity="0.7">
+    <path d="M50,155 L270,155" stroke="#FF6B6B" stroke-width="8" stroke-linecap="round" />
+    <path d="M50,165 L270,165" stroke="#FFD166" stroke-width="8" stroke-linecap="round" />
+    <path d="M50,175 L270,175" stroke="#06D6A0" stroke-width="8" stroke-linecap="round" />
+    <path d="M50,185 L270,185" stroke="#118AB2" stroke-width="8" stroke-linecap="round" />
+    <path d="M50,195 L270,195" stroke="#8338EC" stroke-width="8" stroke-linecap="round" />
+  </g>
+  
+  <!-- Small decorative elements -->
+  <circle cx="80" cy="50" r="10" fill="#FFD166" opacity="0.8" />
+  <circle cx="240" cy="40" r="8" fill="#FF6B6B" opacity="0.8" />
+  <circle cx="200" cy="30" r="6" fill="#83C5BE" opacity="0.8" />
+  <circle cx="100" cy="30" r="7" fill="#A78BFA" opacity="0.8" />
+  
+  <!-- Sparkles -->
+  <g fill="white" opacity="0.9">
+    <path d="M40,80 L45,90 L55,90 L47,97 L50,107 L40,100 L30,107 L32,97 L25,90 L35,90 Z" />
+    <path d="M260,60 L263,66 L270,66 L265,70 L267,77 L260,73 L253,77 L255,70 L250,66 L257,66 Z" />
+    <path d="M150,20 L153,25 L160,25 L155,30 L157,35 L150,32 L143,35 L145,30 L140,25 L147,25 Z" />
+  </g>
+</svg>

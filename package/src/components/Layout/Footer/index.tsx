@@ -37,13 +37,12 @@ const footer = () => {
                   height={20} 
                 />
               </Link>
-              <Link href="https://pinterest.com" className="footer-icons hover:bg-primary transition-colors duration-200 p-2 rounded-full">
-                <Image 
-                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/footer/pinterest.svg`} 
-                  alt="Pinterest" 
-                  width={20} 
-                  height={20} 
-                />
+              <Link 
+                href="https://pinterest.com" 
+                className="footer-icons hover:bg-primary transition-colors duration-200 p-2 rounded-full"
+                aria-label="Pinterest"
+              >
+                <Icon icon="mdi:pinterest" className="w-5 h-5 text-white" />
               </Link>
             </div>
           </div>
