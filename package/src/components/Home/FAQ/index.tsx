@@ -18,7 +18,7 @@ const FAQ = () => {
                 {({ open }) => (
                   <div>
                     <Disclosure.Button className="flex w-full justify-between items-center text-left text-2xl font-medium focus:outline-hidden ">
-                      <span className="text-black">How does AiPonATime<sup className="text-sm">™</sup> personalize my child's storybook?</span>
+                      <span className="text-black">How does AIPonATime<sup className="text-sm">™</sup> personalize my child's storybook?</span>
                       <div
                         className={`h-5 w-5 transform transition-transform duration-300 ${open ? "rotate-180" : ""
                           }`}

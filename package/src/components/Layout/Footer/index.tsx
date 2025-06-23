@@ -69,7 +69,7 @@ const footer = () => {
               <h3 className='text-center md:text-start text-white text-lg'>
                 © {new Date().getFullYear()}{' '}
                 <a href="https://yablokolabs.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
-                  Yabloko Labs Pvt. Ltd.
+                  Yabloko Labs Pvt. Ltd
                 </a>
                 . All rights reserved.
               </h3>
