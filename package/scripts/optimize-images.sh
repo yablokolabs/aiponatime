@@ -6,7 +6,7 @@ echo "🚀 Starting image optimization..."
 # Install required tools
 echo "🔧 Installing required tools..."
 sudo apt-get update > /dev/null
-sudo apt-get install -y webp optipng > /dev/null
+sudo apt-get install -y jpegoptim optipng pngquant webp > /dev/null
 
 # Function to optimize images
 optimize_images() {
@@ -22,33 +22,49 @@ optimize_images() {
       continue
     fi
     
-    # Get file extension and name
+    # Get file extension in lowercase
     extension="${img##*.}"
-    filename="${img%.*}"
+    extension_lower="${extension,,}"
     
-    # Skip if already optimized
-    if [[ -f "${filename}.webp" ]]; then
-      echo "    ✅ Already optimized: $img"
-      continue
-    fi
+    # Get original size
+    original_size=$(stat -f%z "$img" 2>/dev/null || stat -c%s "$img" 2>/dev/null)
+    
+    # Create a backup before modifying
+    cp "$img" "${img}.bak"
     
     # Optimize based on file type
-    case "${extension,,}" in
+    case "$extension_lower" in
       jpg|jpeg)
-        echo "    🔄 Converting $img to WebP..."
-        cwebp -q 85 "$img" -o "${filename}.webp"
+        echo "    🖼️  Optimizing JPEG: $img"
+        jpegoptim --strip-all --all-progressive -m85 "$img"
         ;;
       png)
         # Preserve transparency for logos and icons
         if [[ "$img" == *"logo"* ]] || [[ "$img" == *"icon"* ]]; then
           echo "    🎨 Optimizing PNG (preserving transparency): $img"
-          optipng -o2 -quiet -preserve -dir . "$img"
+          optipng -o2 -quiet -strip all -clobber "$img"
         else
-          echo "    🔄 Converting $img to WebP..."
-          cwebp -q 85 "$img" -o "${filename}.webp"
+          echo "    🖼️  Optimizing PNG: $img"
+          pngquant --quality=80-95 --ext ".tmp" --force "$img" && mv "${img%.*}.tmp" "$img"
+          optipng -o2 -quiet -strip all -clobber "$img"
         fi
         ;;
     esac
+    
+    # Get optimized size
+    optimized_size=$(stat -f%z "$img" 2>/dev/null || stat -c%s "$img" 2>/dev/null)
+    
+    # Calculate savings
+    if [ $? -eq 0 ] && [ "$optimized_size" -lt "$original_size" ]; then
+      savings=$(( (original_size - optimized_size) * 100 / original_size ))
+      echo "    ✅ Optimized: ${original_size} bytes → ${optimized_size} bytes (saved ${savings}%)"
+      # Remove backup if optimization was successful
+      rm -f "${img}.bak"
+    else
+      echo "    ⚠️  No optimization possible, keeping original"
+      # Restore original if optimization didn't reduce size or failed
+      mv -f "${img}.bak" "$img"
+    fi
   done
 }
 
