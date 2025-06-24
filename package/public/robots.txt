@@ -1,0 +1,13 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://aiponatime.com/sitemap.xml
+
+# Disallow crawling of admin and internal pages
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+
+# Crawl-delay: 10  # Uncomment and adjust if needed to limit crawl rate

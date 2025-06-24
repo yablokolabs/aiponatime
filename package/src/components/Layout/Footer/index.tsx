@@ -86,7 +86,14 @@ const footer = () => {
           </div>
         </div>
       </div>
-      {/* Cloudflare Web Analytics */}
+      {/* Analytics Scripts */}
+      <Script 
+        id="ahrefs-analytics"
+        src="https://analytics.ahrefs.com/analytics.js"
+        data-key="3xlVTfDg4PXpGfnliy5F6g"
+        strategy="afterInteractive"
+        async
+      />
       <Script 
         id="cf-analytics"
         defer
