@@ -1,8 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
-import { Icon } from "@iconify/react";
+import { Icon } from "@iconify/react/dist/iconify.js";
 import { ProductType } from "@/app/api/data";
+
+// Helper function to convert link text to href
+const getLinkHref = (linkText: string): string => {
+  const linkMap: Record<string, string> = {
+    'How It Works': '/#how-it-works',
+    'Our Story': '/#about',
+    'Testimonials': '/#testimonials',
+    'Pricing': '/#pricing',
+    'Blog': '/blog',
+    'FAQs': '/#faq',
+    'Reading Tips': '/reading-tips',
+    'Contact Us': '/#contact',
+    'Privacy Policy': '/privacy-policy',
+    'Terms of Service': '/terms',
+    'Refund Policy': '/refund-policy'
+  };
+  return linkMap[linkText] || '/';
+};
 
 const footer = () => {
   return (
@@ -47,14 +65,46 @@ const footer = () => {
               </Link>
             </div>
           </div>
-          {/* CLOUMN-2/3 */}
+          {/* Quick Links */}
+          <div className="group relative col-span-2">
+            <p className="text-white text-xl font-extrabold mb-9">Quick Links</p>
+            <ul className="space-y-4">
+              <li>
+                <Link href="#about" className="text-white/70 hover:text-white text-lg font-normal transition-colors">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link href="#pricing" className="text-white/70 hover:text-white text-lg font-normal transition-colors">
+                  Pricing
+                </Link>
+              </li>
+              <li>
+                <Link href="#faq" className="text-white/70 hover:text-white text-lg font-normal transition-colors">
+                  FAQ
+                </Link>
+              </li>
+              <li>
+                <Link href="#contact" className="text-white/70 hover:text-white text-lg font-normal transition-colors">
+                  Contact Us
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Dynamic Links from ProductType */}
           {ProductType.map((product) => (
             <div key={product.id} className="group relative col-span-2">
               <p className="text-white text-xl font-extrabold mb-9">{product.section}</p>
-              <ul>
+              <ul className="space-y-4">
                 {product.link.map((link: string, index: number) => (
-                  <li key={index} className='mb-5'>
-                    <Link href="/" className="text-white text-lg font-normal mb-6 space-links">{link}</Link>
+                  <li key={index}>
+                    <Link 
+                      href={getLinkHref(link)} 
+                      className="text-white/70 hover:text-white text-lg font-normal transition-colors"
+                    >
+                      {link}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -76,11 +126,11 @@ const footer = () => {
               </h3>
             </div>
             <div className="flex justify-center md:justify-end">
-              <Link href="/">
-                <h3 className="text-white pr-6">Privacy policy</h3>
+              <Link href="/privacy-policy">
+                <h3 className="text-white pr-6 hover:text-primary transition-colors">Privacy policy</h3>
               </Link>
-              <Link href="/">
-                <h3 className="text-white pl-6 border-solid border-l border-footer">Terms & conditions</h3>
+              <Link href="/terms">
+                <h3 className="text-white pl-6 border-solid border-l border-footer hover:text-primary transition-colors">Terms & conditions</h3>
               </Link>
             </div>
           </div>
