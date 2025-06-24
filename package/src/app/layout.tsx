@@ -43,6 +43,9 @@ export const metadata: Metadata = {
       },
     ],
   },
+  other: {
+    'ahrefs-site-verification': 'ad920c0040aa681f970b61367c5146881185afa5a15860d0668eee43ced884ec',
+  },
 }
 
 export default function RootLayout({
