@@ -4,22 +4,22 @@ import Script from "next/script";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { ProductType } from "@/app/api/data";
 
-// Helper function to convert link text to href
+// Helper function to convert link text to anchor links
 const getLinkHref = (linkText: string): string => {
   const linkMap: Record<string, string> = {
-    'How It Works': '/#how-it-works',
-    'Our Story': '/#about',
-    'Testimonials': '/#testimonials',
-    'Pricing': '/#pricing',
-    'Blog': '/blog',
-    'FAQs': '/#faq',
-    'Reading Tips': '/reading-tips',
-    'Contact Us': '/#contact',
-    'Privacy Policy': '/privacy-policy',
-    'Terms of Service': '/terms',
-    'Refund Policy': '/refund-policy'
+    'How It Works': '#how-it-works',
+    'Our Story': '#about',
+    'Testimonials': '#testimonials',
+    'Pricing': '#pricing',
+    'Blog': '#blog',
+    'FAQs': '#faq',
+    'Reading Tips': '#reading-tips',
+    'Contact Us': '#contact',
+    'Privacy Policy': '#privacy',
+    'Terms of Service': '#terms',
+    'Refund Policy': '#refund'
   };
-  return linkMap[linkText] || '/';
+  return linkMap[linkText] || '#';
 };
 
 const footer = () => {
@@ -126,10 +126,10 @@ const footer = () => {
               </h3>
             </div>
             <div className="flex justify-center md:justify-end">
-              <Link href="/privacy-policy">
+              <Link href="#privacy">
                 <h3 className="text-white pr-6 hover:text-primary transition-colors">Privacy policy</h3>
               </Link>
-              <Link href="/terms">
+              <Link href="#terms">
                 <h3 className="text-white pl-6 border-solid border-l border-footer hover:text-primary transition-colors">Terms & conditions</h3>
               </Link>
             </div>
