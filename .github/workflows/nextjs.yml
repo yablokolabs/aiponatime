@@ -36,6 +36,66 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Make scripts executable
+        run: chmod +x ./scripts/*.sh
+
+      - name: Optimize images
+        run: ./scripts/optimize-images.sh
+
+      - name: Update image references
+        run: |
+          # Create a script to update image references
+          cat > update-refs.js << 'EOL'
+          const fs = require('fs');
+          const path = require('path');
+          
+          // Function to process files recursively
+          function processDirectory(directory) {
+            const files = fs.readdirSync(directory);
+            
+            files.forEach(file => {
+              const fullPath = path.join(directory, file);
+              const stat = fs.statSync(fullPath);
+              
+              if (stat.isDirectory()) {
+                processDirectory(fullPath);
+              } else if (file.match(/\.(js|jsx|tsx|ts)$/)) {
+                let content = fs.readFileSync(fullPath, 'utf8');
+                const originalContent = content;
+                
+                // Replace image references to use WebP when available
+                content = content.replace(
+                  /(['"])(.*?\.(?:jpg|jpeg|png))(?!\.webp)(['"])/g, 
+                  (match, quote1, imgPath, quote2) => {
+                    const webpPath = imgPath.replace(/\.(jpg|jpeg|png)$/i, '.webp');
+                    const fullImgPath = path.join(process.cwd(), 'public', imgPath);
+                    const fullWebpPath = path.join(process.cwd(), 'public', webpPath);
+                    
+                    // Check if WebP version exists
+                    if (fs.existsSync(fullWebpPath)) {
+                      console.log(`✅ Replaced ${imgPath} with ${webpPath}`);
+                      return `${quote1}${webpPath}${quote2}`;
+                    }
+                    return match;
+                  }
+                );
+                
+                // Write back if changed
+                if (content !== originalContent) {
+                  fs.writeFileSync(fullPath, content, 'utf8');
+                  console.log(`📝 Updated ${fullPath}`);
+                }
+              }
+            });
+          }
+          
+          // Start processing from the src directory
+          processDirectory(path.join(process.cwd(), 'src'));
+          EOL
+          
+          # Run the script
+          node update-refs.js
+
       - name: Build static site
         run: npm run build
 
