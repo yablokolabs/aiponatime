@@ -64,6 +64,17 @@ const footer = () => {
                 <Icon icon="mdi:pinterest" className="w-5 h-5 text-white" />
               </Link>
             </div>
+            <div className="mt-4">
+              <p className="text-white/70 text-lg">
+                <Link 
+                  href="mailto:sales@aiponatime.com" 
+                  className="bg-primary/10 px-2 py-1 rounded text-primary hover:bg-primary/20 hover:text-white transition-all font-medium"
+                  style={{ animation: 'attention-pulse 2s infinite' }}
+                >
+                  sales@aiponatime.com
+                </Link>
+              </p>
+            </div>
           </div>
           {/* Quick Links */}
           <div className="group relative col-span-2">
