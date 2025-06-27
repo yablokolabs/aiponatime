@@ -43,7 +43,7 @@ const plans = [
     },
     user: "per month",
     features: {
-      books: "Unlimited Personalized Stories",
+      books: "5 Personalized Stories / Month",
       format: "Hardcover + eBook",
       personalization: "Full Custom Illustrations",
       extras: "Gift Wrapping & Dedication Page",
@@ -112,14 +112,10 @@ const Manage = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-16 gap-14 manage">
           {filteredData.map((items, i) => (
-            <div className="shadow-manage-shadow border border-border text-center p-10" key={i}>
+            <div className="shadow-manage-shadow border border-border text-center p-10 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-primary transform hover:scale-[1.02] rounded-lg" key={i}>
               <h4 className="text-2xl font-bold mb-3">{items.heading}</h4>
               <h2 className="text-6xl font-extrabold mb-3">${items.price}</h2>
-              <p className="text-14 font-medium text-darkgrey mb-6">{selectedCategory === "yearly" ? "per year" : "per month"}</p>
-
-              <button className="text-14 font-bold text-primary bg-transparent hover:bg-primary hover:text-white border-2 border-primary rounded-full py-4 px-12 mb-6">
-                Start My 15-day Trial
-              </button>
+              <p className="text-14 font-medium text-darkgrey mb-10">{selectedCategory === "yearly" ? "per year" : "per month"}</p>
               {/* Map through the features object and render each key-value pair dynamically */}
               {Object.entries(items.features).map(([key, value]) => (
                 <h3 className="text-sm font-medium text-darkgrey mb-3" key={key}>
