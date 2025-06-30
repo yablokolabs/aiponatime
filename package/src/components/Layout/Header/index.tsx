@@ -87,14 +87,14 @@ const Header: React.FC = () => {
           </nav>
           <div className="flex items-center gap-2 lg:gap-3 pl-4 border-l border-black/60 duration-300 py-2">
             <button
-              className='hidden lg:block text-primary text-lg font-medium py-3 px-6 transition duration-300 ease-in-out leafbutton bg-lightblue hover:text-white hover:bg-primary hover:cursor-pointer rounded-md'
+              className='hidden text-primary text-lg font-medium py-3 px-6 transition duration-300 ease-in-out leafbutton bg-lightblue hover:text-white hover:bg-primary hover:cursor-pointer rounded-md'
               onClick={() => {
                 setIsSignInOpen(true);
               }}>
               Sign In
             </button>
             <button
-              className='hidden lg:block text-white bg-primary border border-primary text-lg font-medium py-3 px-6 transition duration-300 ease-in-out rounded-md hover:bg-white hover:text-primary hover:cursor-pointer'
+              className='hidden text-white bg-primary border border-primary text-lg font-medium py-3 px-6 transition duration-300 ease-in-out rounded-md hover:bg-white hover:text-primary hover:cursor-pointer'
               onClick={() => {
                 setIsSignUpOpen(true);
               }}>
