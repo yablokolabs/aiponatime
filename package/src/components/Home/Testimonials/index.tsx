@@ -106,7 +106,7 @@ const Testimonial: React.FC = () => {
       <div className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md)">
         <div className="">
           <div className="text-center">
-            <h3 className="text-center text-6xl font-black mx-24">
+            <h3 id="testimonials" className="text-center text-6xl font-black mx-24">
               Where Imagination Meets Personalization.
             </h3>
           </div>

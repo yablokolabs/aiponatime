@@ -8,7 +8,7 @@ export const ProductType: { id: number; section: string; link: string[]; }[] = [
   {
     id: 2,
     section: "Resources",
-    link: ['Blog', 'FAQs', 'Reading Tips', 'Contact Us']
+    link: ['FAQs', 'Contact Us']
   },
   {
     id: 3,
