@@ -40,6 +40,15 @@ const Footer = () => {
             <h3 className='text-white text-4xl font-bold leading-9 mb-4 lg:mb-10'>AIPonATime<sup className="text-sm">™</sup></h3>
             <p className='text-white/70 text-lg mb-6 max-w-xs'>Creating magical, personalized storybooks that inspire a love for reading in every child.</p>
             <div className='flex gap-4'>
+              <Link 
+                href="https://www.linkedin.com/in/yabloko-labs-4858bb366/" 
+                className="footer-icons hover:bg-primary transition-colors duration-200 p-2 rounded-full"
+                aria-label="LinkedIn"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Icon icon="mdi:linkedin" className="w-5 h-5 text-white" />
+              </Link>
               <Link href="https://facebook.com" className="footer-icons hover:bg-primary transition-colors duration-200 p-2 rounded-full">
                 <Image 
                   src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/footer/vec.svg`} 
@@ -48,13 +57,12 @@ const Footer = () => {
                   height={20} 
                 />
               </Link>
-              <Link href="https://twitter.com" className="footer-icons hover:bg-primary transition-colors duration-200 p-2 rounded-full">
-                <Image 
-                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/footer/twitter.svg`} 
-                  alt="Twitter" 
-                  width={20} 
-                  height={20} 
-                />
+              <Link 
+                href="https://github.com/map2map/aiponatime" 
+                className="footer-icons hover:bg-primary transition-colors duration-200 p-2 rounded-full"
+                aria-label="GitHub"
+              >
+                <Icon icon="mdi:github" className="w-5 h-5 text-white" />
               </Link>
               <Link href="https://instagram.com" className="footer-icons hover:bg-primary transition-colors duration-200 p-2 rounded-full">
                 <Image 
@@ -65,11 +73,13 @@ const Footer = () => {
                 />
               </Link>
               <Link 
-                href="https://pinterest.com" 
+                href="https://www.youtube.com/@aiponatime" 
                 className="footer-icons hover:bg-primary transition-colors duration-200 p-2 rounded-full"
-                aria-label="Pinterest"
+                aria-label="YouTube"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <Icon icon="mdi:pinterest" className="w-5 h-5 text-white" />
+                <Icon icon="mdi:youtube" className="w-5 h-5 text-white" />
               </Link>
             </div>
             <div className="mt-4">
