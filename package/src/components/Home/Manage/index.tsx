@@ -72,7 +72,7 @@ const Manage = () => {
   return (
     <section id="services-section dark:bg-darkmode">
       <div id="pricing" className="mx-auto max-w-7xl">
-        <h3 className="text-center text-6xl font-black mx-24">
+        <h3 className="text-center text-4xl sm:text-5xl md:text-6xl font-black px-4 sm:px-8 md:mx-12 lg:mx-24">
           Create Personalized Stories for Your Child.
         </h3>
 

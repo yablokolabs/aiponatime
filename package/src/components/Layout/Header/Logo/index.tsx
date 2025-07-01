@@ -11,7 +11,7 @@ const Logo: React.FC = () => {
           alt="AIponaTime" 
           width={36}
           height={14}
-          className="h-24 w-auto object-contain transition-all duration-300 ease-in-out group-hover:scale-y-[3.5] group-hover:scale-x-[3.5] origin-top relative z-10"
+          className="h-16 md:h-20 lg:h-24 w-auto object-contain transition-all duration-300 ease-in-out group-hover:scale-y-[3.5] group-hover:scale-x-[3.5] origin-top relative z-10"
           style={{
             WebkitMask: 'linear-gradient(to right, black, black)',
             mask: 'linear-gradient(to right, black, black)',

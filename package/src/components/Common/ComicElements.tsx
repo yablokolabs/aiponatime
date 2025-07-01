@@ -106,7 +106,7 @@ export const ComicElements = () => {
   if (!mounted) return null;
 
   return (
-    <>
+    <div className="hidden md:block">
       {/* Main decorative elements */}
       {elements.map((element, index) => (
         <motion.div
@@ -201,6 +201,6 @@ export const ComicElements = () => {
           />
         ))}
       </div>
-    </>
+    </div>
   );
 };

@@ -26,13 +26,17 @@ const Digital = () => {
             </div>
           </div>
         </div>
-        <div className="absolute -bottom-16 -right-20">
-          <Image
-            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/digital/girldoodle.svg`}
-            alt="doodle"
-            width={815}
-            height={691}
-          />
+        <div className="hidden md:block absolute -bottom-16 -right-20 w-[600px] md:w-[700px] lg:w-[815px]">
+          <div className="relative w-full h-auto">
+            <Image
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/digital/girldoodle.svg`}
+              alt="doodle"
+              width={815}
+              height={691}
+              className="w-full h-auto object-contain object-right-bottom"
+              priority
+            />
+          </div>
         </div>
       </div>
     </section>

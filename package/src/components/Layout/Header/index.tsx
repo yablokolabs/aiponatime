@@ -100,15 +100,7 @@ const Header: React.FC = () => {
               }}>
               Sign Up
             </button>
-            <button
-              onClick={() => setNavbarOpen(!navbarOpen)}
-              className="block lg:hidden p-2 rounded-lg"
-              aria-label="Toggle mobile menu"
-            >
-              <span className="block w-6 h-0.5 bg-white"></span>
-              <span className="block w-6 h-0.5 bg-white mt-1.5"></span>
-              <span className="block w-6 h-0.5 bg-white mt-1.5"></span>
-            </button>
+            {/* Hamburger menu button removed */}
           </div>
         </div>
         {navbarOpen && (
