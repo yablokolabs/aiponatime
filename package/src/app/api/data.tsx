@@ -101,7 +101,7 @@ export const Testimonials: { profession: string; comment: string; imgSrc: string
     profession: "Dad of Aaron (age 6)",
     comment:
       "Aaron's face lit up when he saw his name in the story! The adventure was so personalized and magical—he wants to read it every night.",
-    imgSrc: "https://randomuser.me/api/portraits/men/32.jpg",
+    imgSrc: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/testimonials/david-r.jpg`,
     rating: 5,
   },
   {
@@ -109,7 +109,7 @@ export const Testimonials: { profession: string; comment: string; imgSrc: string
     profession: "Mom of Zoe (age 4)",
     comment:
       "We were amazed at how the book captured Zoe’s interests. She keeps showing it to everyone and feels like a true hero!",
-    imgSrc: "https://randomuser.me/api/portraits/women/44.jpg",
+    imgSrc: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/testimonials/emily-m.jpg`,
     rating: 5,
   },
   {
@@ -117,7 +117,7 @@ export const Testimonials: { profession: string; comment: string; imgSrc: string
     profession: "Parent",
     comment:
       "The AI created a story that felt truly unique to our family. It’s a keepsake we’ll treasure forever.",
-    imgSrc: "https://randomuser.me/api/portraits/men/65.jpg",
+    imgSrc: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/testimonials/tony-m.jpg`,
     rating: 4,
   },
   {
@@ -125,7 +125,7 @@ export const Testimonials: { profession: string; comment: string; imgSrc: string
     profession: "Mom of twins",
     comment:
       "Both my kids got their own stories based on their personalities! Bedtime has never been this fun or special.",
-    imgSrc: "https://randomuser.me/api/portraits/women/68.jpg",
+    imgSrc: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/testimonials/sarah-l.jpg`,
     rating: 5,
   },
   {
@@ -133,7 +133,7 @@ export const Testimonials: { profession: string; comment: string; imgSrc: string
     profession: "Dad of Mateo (age 7)",
     comment:
       "Seeing Mateo’s love of dinosaurs woven into his story was incredible. Highly recommend for any parent!",
-    imgSrc: "https://randomuser.me/api/portraits/men/71.jpg",
+    imgSrc: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/testimonials/jorge-m.jpg`,
     rating: 5,
   },
   {
@@ -141,7 +141,7 @@ export const Testimonials: { profession: string; comment: string; imgSrc: string
     profession: "Mom of Leela (age 5)",
     comment:
       "The process was so easy and the result was beautiful. Leela’s confidence has grown since becoming the star of her own book!",
-    imgSrc: "https://randomuser.me/api/portraits/women/12.jpg",
+    imgSrc: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/testimonials/maya-p.jpg`,
     rating: 5,
   },
 ];
