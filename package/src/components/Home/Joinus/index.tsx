@@ -34,7 +34,7 @@ const Join = () => {
   };
 
   return (
-    <section className="overflow-hidden dark:bg-darkmode bg-joinus">
+    <section id="contact" className="overflow-hidden dark:bg-darkmode bg-joinus">
       <div className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md)">
         <div className="text-center">
           <h3 className="text-primary text-lg font-normal tracking-widest uppercase">
