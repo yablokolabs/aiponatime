@@ -1,26 +1,36 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { ProductType } from "@/app/api/data";
+import { useState } from "react";
+import PrivacyModal from "@/components/Common/PrivacyModal";
+import TermsModal from "@/components/Common/TermsModal";
+import RefundModal from "@/components/Common/RefundModal";
 
 // Helper function to convert link text to anchor links
 const getLinkHref = (linkText: string): string => {
+  // Policy links are handled by modals, return '#' to prevent page jump
+  if (['Privacy Policy', 'Terms of Service', 'Refund Policy'].includes(linkText)) {
+    return '#';
+  }
+  
   const linkMap: Record<string, string> = {
     'How It Works': '#how-it-works',
     'Our Story': '#about',
     'Testimonials': '#testimonials',
     'Pricing': '#pricing',
     'FAQs': '#faq',
-    'Contact Us': '#contact',
-    'Privacy Policy': '#privacy',
-    'Terms of Service': '#terms',
-    'Refund Policy': '#refund'
+    'Contact Us': '#contact'
   };
   return linkMap[linkText] || '#';
 };
 
-const footer = () => {
+const Footer = () => {
+  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
+  const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
+  const [isRefundModalOpen, setIsRefundModalOpen] = useState(false);
   return (
     <div className="bg-black" id="first-section">
       <div className="mx-auto max-w-2xl pt-48 pb-16 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -108,12 +118,47 @@ const footer = () => {
               <ul className="space-y-4">
                 {product.link.map((link: string, index: number) => (
                   <li key={index}>
-                    <Link 
-                      href={getLinkHref(link)} 
-                      className="text-white/70 hover:text-white text-lg font-normal transition-colors"
-                    >
-                      {link}
-                    </Link>
+                    {link === 'Privacy Policy' ? (
+                      <button 
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setIsPrivacyModalOpen(true);
+                        }}
+                        className="text-white/70 hover:text-white text-lg font-normal transition-colors text-left w-full"
+                      >
+                        {link}
+                      </button>
+                    ) : link === 'Terms of Service' ? (
+                      <button 
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setIsTermsModalOpen(true);
+                        }}
+                        className="text-white/70 hover:text-white text-lg font-normal transition-colors text-left w-full"
+                      >
+                        {link}
+                      </button>
+                    ) : link === 'Refund Policy' ? (
+                      <button 
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setIsRefundModalOpen(true);
+                        }}
+                        className="text-white/70 hover:text-white text-lg font-normal transition-colors text-left w-full"
+                      >
+                        {link}
+                      </button>
+                    ) : (
+                      <button 
+                        onClick={(e) => {
+                          e.preventDefault();
+                          window.location.href = getLinkHref(link);
+                        }}
+                        className="text-white/70 hover:text-white text-lg font-normal transition-colors text-left w-full"
+                      >
+                        {link}
+                      </button>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -135,12 +180,33 @@ const footer = () => {
               </h3>
             </div>
             <div className="flex justify-center md:justify-end">
-              <Link href="#privacy">
-                <h3 className="text-white pr-6 hover:text-primary transition-colors">Privacy policy</h3>
-              </Link>
-              <Link href="#terms">
-                <h3 className="text-white pl-6 border-solid border-l border-footer hover:text-primary transition-colors">Terms & conditions</h3>
-              </Link>
+              <button 
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsPrivacyModalOpen(true);
+                }}
+                className="text-white pr-6 hover:text-primary transition-colors text-lg font-normal"
+              >
+                Privacy policy
+              </button>
+              <button 
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsTermsModalOpen(true);
+                }}
+                className="text-white pl-6 border-solid border-l border-footer hover:text-primary transition-colors text-lg font-normal"
+              >
+                Terms & conditions
+              </button>
+              {/* <button 
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsRefundModalOpen(true);
+                }}
+                className="text-white pl-6 border-solid border-l border-footer hover:text-primary transition-colors text-lg font-normal"
+              >
+                Refund policy
+              </button> */}
             </div>
           </div>
         </div>
@@ -160,8 +226,20 @@ const footer = () => {
         data-cf-beacon='{"token": "9b7ada4ada9b4353a7f5a62cb133e34e"}'
         strategy="afterInteractive"
       />
+      <PrivacyModal 
+        isOpen={isPrivacyModalOpen} 
+        onClose={() => setIsPrivacyModalOpen(false)} 
+      />
+      <TermsModal
+        isOpen={isTermsModalOpen}
+        onClose={() => setIsTermsModalOpen(false)}
+      />
+      <RefundModal
+        isOpen={isRefundModalOpen}
+        onClose={() => setIsRefundModalOpen(false)}
+      />
     </div>
   )
 }
 
-export default footer;
+export default Footer;
