@@ -71,10 +71,10 @@ const Hero = () => {
               className="relative group"
             >
               <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-500 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-200 group-hover:duration-200"></div>
-              <button className="relative bg-gradient-to-r from-purple-600 to-pink-500 text-white text-base sm:text-lg md:text-xl font-semibold py-3 px-8 sm:py-4 sm:px-10 md:py-5 md:px-12 rounded-full hover:shadow-lg hover:scale-105 transform transition-all duration-200 w-full sm:w-auto">
+              <Link href="#contact" className="relative bg-gradient-to-r from-purple-600 to-pink-500 text-white text-base sm:text-lg md:text-xl font-semibold py-3 px-8 sm:py-4 sm:px-10 md:py-5 md:px-12 rounded-full hover:shadow-lg hover:scale-105 transform transition-all duration-200 w-full sm:w-auto inline-block text-center">
                 Get Started Now
                 <span className="ml-1 sm:ml-2">✨</span>
-              </button>
+              </Link>
             </motion.div>
           </div>
           <div className="md:col-span-5 lg:col-span-7 order-1 md:order-2 flex items-center">
