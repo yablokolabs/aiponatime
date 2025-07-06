@@ -16,7 +16,6 @@ const plans = [
       books: "1 Personalized Storybook / Month",
       format: "Digital PDF Delivery",
       personalization: "Child's Name & Interests",
-      extras: "Interactive Reading Guide",
       support: "Email Support",
     },
   },
@@ -32,7 +31,7 @@ const plans = [
       format: "Hardcover & Digital PDF",
       personalization: "Name, Interests & Photos",
       extras: "Collector Sticker Set",
-      support: "Priority Support",
+      support: "Email Support",
     },
   },
   {
@@ -47,7 +46,7 @@ const plans = [
       format: "Hardcover + eBook",
       personalization: "Full Custom Illustrations",
       extras: "Gift Wrapping & Dedication Page",
-      support: "24/7 VIP Support",
+      support: "Priority Support",
     },
   },
 ];
@@ -79,7 +78,7 @@ const Manage = () => {
         <div className="md:flex md:justify-around mt-20">
           <div className="flex gap-5 justify-center md:justify-start">
             <Image src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/manage/right.svg`} alt="right-icon" width={21} height={14} />
-            <h4 className="text-18 font-semibold">15-Day Free Trial</h4>
+            <h4 className="text-18 font-semibold">Your First Adventure Starts Today</h4>
           </div>
           <div className="flex gap-5 justify-center md:justify-start">
             <Image src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/manage/right.svg`} alt="right-icon" width={21} height={14} />

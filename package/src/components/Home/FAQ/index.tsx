@@ -73,7 +73,7 @@ const FAQ = () => {
                     </Disclosure.Button>
                     <Disclosure.Panel className="text-base text-black/50 pt-4 mt-6 font-normal text-left border-t border-border">
                       <div className="lg:max-w-70%">
-                        Digital PDFs are ready right after purchase. Printed books are produced in 5-7 business days and shipped worldwide; delivery times vary by location.
+                        Digital PDFs are ready within 1-2 business days. Printed books are produced in 5-7 business days and shipped worldwide; delivery times vary by location.
                       </div>
                     </Disclosure.Panel>
                   </>
