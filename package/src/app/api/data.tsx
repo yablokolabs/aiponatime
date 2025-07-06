@@ -24,7 +24,7 @@ export const Aboutdata: { heading: string; imgSrc: string; paragraph: string; li
     heading: "How It Works",
     imgSrc: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/aboutus/imgOne.svg`,
     paragraph:
-      "Parents enter their child's name, age, and interests and complete checkout — we handle the rest.",
+      "Parents enter their child's name, age, and interests and complete payment — we'll handle the rest.",
     link: "Learn more",
   },
   {

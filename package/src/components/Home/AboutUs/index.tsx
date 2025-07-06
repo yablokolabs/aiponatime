@@ -41,13 +41,6 @@ const Aboutus = () => {
                 <h4 className="text-lg font-normal text-black group-hover:text-white mb-5">
                   {item.paragraph}
                 </h4>
-                <Link
-                  href="#"
-                  className="text-18 font-semibold text-primary hover-underline flex items-center"
-                >
-                  {item.link}
-                  <Icon icon="tabler:chevron-right" width="20" height="20" />
-                </Link>
               </div>
             ))}
           </div>
