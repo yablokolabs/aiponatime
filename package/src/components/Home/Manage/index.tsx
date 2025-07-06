@@ -31,7 +31,6 @@ const plans = [
       format: "Hardcover & Digital PDF",
       personalization: "Name, Interests & Photos",
       extras: "Collector Sticker Set",
-      support: "Email Support",
     },
   },
   {
@@ -42,7 +41,7 @@ const plans = [
     },
     user: "per month",
     features: {
-      books: "5 Personalized Stories / Month",
+      books: "4 Personalized Stories / Month",
       format: "Hardcover + eBook",
       personalization: "Full Custom Illustrations",
       extras: "Gift Wrapping & Dedication Page",
