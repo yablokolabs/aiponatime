@@ -37,7 +37,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 gap-y-10 gap-x-16 sm:grid-cols-2 lg:grid-cols-12 xl:gap-x-8">
           {/* COLUMN-1 */}
           <div className='col-span-4'>
-            <h3 className='text-white text-4xl font-bold leading-9 mb-4 lg:mb-10'>AIPonATime<sup className="text-sm">™</sup></h3>
+            <h3 className='text-white text-4xl font-bold leading-9 mb-4 lg:mb-10'>AIponATime<sup className="text-sm">™</sup></h3>
             <p className='text-white/70 text-lg mb-6 max-w-xs'>Creating magical, personalized storybooks that inspire a love for reading in every child.</p>
             <div className='flex gap-4'>
               <Link 
