@@ -23,7 +23,7 @@ const Insta = () => {
             width={306}
             height={306}
             alt="Instagram post 2"
-            className="w-full h-87 rounded-2xl"
+            className="w-full h-[95%] rounded-2xl"
           />
         </div>
 
