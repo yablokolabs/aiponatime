@@ -49,7 +49,7 @@ const Footer = () => {
               >
                 <Icon icon="mdi:linkedin" className="w-5 h-5 text-white" />
               </Link>
-              <Link href="https://facebook.com" className="footer-icons hover:bg-primary transition-colors duration-200 p-2 rounded-full">
+              <Link href="https://www.facebook.com/people/aiponatime/61578219777424" className="footer-icons hover:bg-primary transition-colors duration-200 p-2 rounded-full">
                 <Image 
                   src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/footer/vec.svg`} 
                   alt="Facebook" 
