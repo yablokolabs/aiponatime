@@ -64,7 +64,7 @@ const Footer = () => {
               >
                 <Icon icon="mdi:github" className="w-5 h-5 text-white" />
               </Link>
-              <Link href="https://instagram.com" className="footer-icons hover:bg-primary transition-colors duration-200 p-2 rounded-full">
+              <Link href="https://www.instagram.com/aiponatime" className="footer-icons hover:bg-primary transition-colors duration-200 p-2 rounded-full">
                 <Image 
                   src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/footer/instagram.svg`} 
                   alt="Instagram" 
