@@ -173,7 +173,7 @@ const AudioBookModal = ({ isOpen, onClose }: AudioBookModalProps) => {
                     )}
                   </button>
                   
-                  {state.errors && state.errors.length > 0 && (
+                  {state.errors && Object.keys(state.errors).length > 0 && (
                     <div className="text-red-500 text-sm mt-2 text-left">
                       Please fix the errors above before submitting.
                     </div>
