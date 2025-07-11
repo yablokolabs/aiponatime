@@ -8,12 +8,12 @@ const plans = [
   {
     heading: "Story Starter",
     price: {
-      monthly: 29,
-      yearly: 261,
+      monthly: 39,
+      yearly: 351,
     },
     user: "per month",
     features: {
-      books: "1 Personalized Storybook / Month",
+      books: "2 Personalized Storybooks / Month",
       format: "Digital PDF Delivery",
       personalization: "Child's Name & Interests",
       support: "Email Support",
@@ -22,8 +22,8 @@ const plans = [
   {
     heading: "Story Explorer",
     price: {
-      monthly: 49,
-      yearly: 441,
+      monthly: 59,
+      yearly: 531,
     },
     user: "per month",
     features: {
