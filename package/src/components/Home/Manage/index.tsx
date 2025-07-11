@@ -90,7 +90,7 @@ const Manage = () => {
         </div>
 
         <div className="mt-6 relative">
-          <div className="dance-text -ml-80 text-center -rotate-[10deg] mb-5">get 3 months free</div>
+          <div className="dance-text sm:-ml-80 text-center sm:-rotate-[10deg] mb-5">get 3 months free</div>
           <Image src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/manage/toggle.svg`} alt="toggle-image" width={24} height={24} className="absolute left-[37%] top-8" />
           <div className="flex justify-center">
             <h3 className="text-14 font-medium mr-5">Billed Yearly</h3>
