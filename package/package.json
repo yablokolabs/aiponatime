@@ -10,6 +10,7 @@
     "export": "next export"
   },
   "dependencies": {
+    "@formspree/react": "^3.0.0",
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
     "@iconify/icons-ion": "^1.2.10",
