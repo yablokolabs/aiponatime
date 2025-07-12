@@ -138,7 +138,7 @@ const AudioBookModal = ({ isOpen, onClose }: AudioBookModalProps) => {
                   </div>
                   
                   <div>
-                    <label htmlFor="parentEmail" className="block text-sm font-medium text-gray-700 mb-1 text-left">Parent's Email:</label>
+                    <label htmlFor="parentEmail" className="block text-sm font-medium text-gray-700 mb-1 text-left">Email:</label>
                     <input
                       type="email"
                       id="parentEmail"
