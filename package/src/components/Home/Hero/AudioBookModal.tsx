@@ -155,20 +155,17 @@ const AudioBookModal = ({ isOpen, onClose }: AudioBookModalProps) => {
                     />
                   </div>
                   
-                  <div className="flex items-start mt-4">
-                    <div className="flex items-center h-5">
-                      <input
-                        id="consent"
-                        name="consent"
-                        type="checkbox"
-                        required
-                        className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
-                      />
-                    </div>
-                    <div className="ml-3 text-sm">
-                      <label htmlFor="consent" className="text-gray-700">
-                        I agree to the processing of my personal data. I understand that I can withdraw my consent at any time.
-                      </label>
+                  <div className="flex items-start mt-4 text-left">
+                    <input
+                      id="consent"
+                      name="consent"
+                      type="checkbox"
+                      required
+                      className="h-4 w-4 mt-0.5 text-purple-600 focus:ring-purple-500 border-gray-300 rounded flex-shrink-0"
+                    />
+                    <div className="ml-2">
+                      <div className="text-sm text-gray-700">I agree to the processing of my personal data.</div>
+                      <div className="text-sm text-gray-700">I understand that I can withdraw my consent at any time.</div>
                     </div>
                   </div>
                   
