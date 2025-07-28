@@ -16,6 +16,7 @@ type Plan = {
     format: string;
     personalization: string;
     support: string;
+    extras?: string;
   };
 };
 
