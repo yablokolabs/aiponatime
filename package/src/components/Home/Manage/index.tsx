@@ -46,6 +46,7 @@ const plans: Plan[] = [
       books: "2 Personalized Storybooks / Month",
       format: "Hardcover & Digital PDF",
       personalization: "Name, Interests & Photos",
+      support: "Email & Chat Support",
       extras: "Collector Sticker Set",
     },
   },
