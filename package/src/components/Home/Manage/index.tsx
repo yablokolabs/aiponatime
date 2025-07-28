@@ -2,9 +2,24 @@
 import { useState } from "react";
 import { Switch } from "@headlessui/react";
 import Image from "next/image";
+import { PaymentButton, PlanName } from "@/components/Home/PaymentButton";
 
-// Define the plan structure and its types
-const plans = [
+type Plan = {
+  heading: PlanName;
+  price: {
+    monthly: number;
+    yearly: number;
+  };
+  user: string;
+  features: {
+    books: string;
+    format: string;
+    personalization: string;
+    support: string;
+  };
+};
+
+const plans: Plan[] = [
   {
     heading: "Story Starter",
     price: {
@@ -89,11 +104,11 @@ const Manage = () => {
           </div>
         </div>
 
-        <div className="mt-6 relative">
+        <div className="mt-6 relative text-center">
           <div className="dance-text sm:-ml-80 text-center sm:-rotate-[10deg] mb-5">get 3 months free</div>
           <Image src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/manage/toggle.svg`} alt="toggle-image" width={24} height={24} className="absolute left-[37%] top-8" />
-          <div className="flex justify-center">
-            <h3 className="text-14 font-medium mr-5">Billed Yearly</h3>
+          <div className="flex justify-center items-center gap-4">
+            <h3 className="text-14 font-medium">Billed Yearly</h3>
             <Switch
               checked={enabled}
               onChange={toggleEnabled}
@@ -104,13 +119,13 @@ const Manage = () => {
                 className={`inline-block h-4 w-4 transform rounded-full bg-white transition ${enabled ? "translate-x-6" : "translate-x-1"}`}
               />
             </Switch>
-            <h3 className="text-14 font-medium ml-5">Billed Monthly</h3>
+            <h3 className="text-14 font-medium">Billed Monthly</h3>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-16 gap-14 manage">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-16 gap-14 manage justify-items-center">
           {filteredData.map((items, i) => (
-            <div className="shadow-manage-shadow border border-border text-center p-10 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-primary transform hover:scale-[1.02] rounded-lg" key={i}>
+            <div className="shadow-manage-shadow border border-border text-center p-10 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-primary transform hover:scale-[1.02] rounded-lg w-full max-w-sm" key={i}>
               <h4 className="text-2xl font-bold mb-3">{items.heading}</h4>
               <h2 className="text-6xl font-extrabold mb-3">${items.price}</h2>
               <p className="text-14 font-medium text-darkgrey mb-10">{selectedCategory === "yearly" ? "per year" : "per month"}</p>
@@ -120,6 +135,12 @@ const Manage = () => {
                   {value}
                 </h3>
               ))}
+              <div className="mt-6">
+                <PaymentButton 
+                  planName={items.heading} 
+                  billingPeriod={selectedCategory}
+                />
+              </div>
             </div>
           ))}
         </div>
