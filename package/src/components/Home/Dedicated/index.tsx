@@ -23,7 +23,7 @@ const Dedicated = () => {
                 alt="Founder"
                 width={350}
                 height={450}
-                className="rounded-2xl shadow-xl object-contain w-full h-auto"
+                className="rounded-2xl shadow-xl object-contain w-full h-auto invisible"
                 priority
               />
             </div>
@@ -62,7 +62,7 @@ const Dedicated = () => {
                 alt="Co-Founder"
                 width={350}
                 height={450}
-                className="rounded-2xl shadow-xl object-contain w-full h-auto"
+                className="rounded-2xl shadow-xl object-contain w-full h-auto invisible"
                 priority
               />
             </div>
