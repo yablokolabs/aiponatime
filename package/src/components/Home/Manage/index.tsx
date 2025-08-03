@@ -211,10 +211,11 @@ const Manage = () => {
               <h2 className="text-2xl font-bold mb-4">{items.heading}</h2>
               <h3 className="text-4xl font-bold mb-2">{items.formattedPrice}</h3>
               <p className="text-gray-600 mb-6">
-                {items.user} {currency === 'INR' ? (
-                  <span className="text-sm">(≈ ${items.usdPrice} USD)</span>
+                {selectedCategory === 'yearly' ? 'per year' : 'per month'}
+                {currency === 'INR' ? (
+                  <span className="text-sm"> (≈ ${items.usdPrice} USD)</span>
                 ) : (
-                  <span className="text-sm">(billed in USD)</span>
+                  <span className="text-sm"> (billed in USD)</span>
                 )}
               </p>
               {/* Map through the features object and render each key-value pair dynamically */}
