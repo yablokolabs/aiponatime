@@ -3,7 +3,7 @@ export const ProductType: { id: number; section: string; link: string[]; }[] = [
   {
     id: 1,
     section: "Explore",
-    link: ['How It Works', 'Our Story', 'Testimonials', 'Pricing'],
+    link: ['How It Works', 'Our Story', 'Testimonials', 'Sample Book'],
   },
   {
     id: 2,

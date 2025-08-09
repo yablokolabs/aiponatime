@@ -22,7 +22,8 @@ const getLinkHref = (linkText: string): string => {
     'Testimonials': '#testimonials',
     'Pricing': '#pricing',
     'FAQs': '#faq',
-    'Contact Us': '#contact'
+    'Contact Us': '#contact',
+    'Sample Book': '#sample'
   };
   return linkMap[linkText] || '#';
 };
