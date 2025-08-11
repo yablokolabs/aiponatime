@@ -11,15 +11,14 @@ const USD_TO_INR_RATE = 83.5;
 
 type Plan = {
   heading: PlanName;
-  price: {
-    monthly: number;
-    yearly: number;
+  originalPrice: {
+    usd: number;
+    inr: number;
   };
-  inrPrice: {
-    monthly: number;
-    yearly: number;
+  discountedPrice: {
+    usd: number;
+    inr: number;
   };
-  user: string;
   features: {
     books: string;
     format: string;
@@ -32,17 +31,16 @@ type Plan = {
 const plans: Plan[] = [
   {
     heading: "Story Starter",
-    price: {
-      monthly: 39,
-      yearly: 351,
+    originalPrice: {
+      usd: 39,
+      inr: 3380,
     },
-    inrPrice: {
-      monthly: 3380,
-      yearly: 30418,
+    discountedPrice: {
+      usd: 19.50,
+      inr: 1690,
     },
-    user: "per month",
     features: {
-      books: "2 Personalized Storybooks / Month",
+      books: "Personalized Storybook (One-Time)",
       format: "Digital PDF Delivery",
       personalization: "Child's Name & Interests",
       support: "Email Support",
@@ -50,17 +48,16 @@ const plans: Plan[] = [
   },
   {
     heading: "Story Explorer",
-    price: {
-      monthly: 59,
-      yearly: 531,
+    originalPrice: {
+      usd: 59,
+      inr: 5113,
     },
-    inrPrice: {
-      monthly: 5113,
-      yearly: 46025,
+    discountedPrice: {
+      usd: 29.50,
+      inr: 2557,
     },
-    user: "per month",
     features: {
-      books: "2 Personalized Storybooks / Month",
+      books: "Personalized Storybook (One-Time)",
       format: "Hardcover & Digital PDF",
       personalization: "Name, Interests & Photos",
       support: "Email & Chat Support",
@@ -69,17 +66,16 @@ const plans: Plan[] = [
   },
   {
     heading: "Story Legend",
-    price: {
-      monthly: 89,
-      yearly: 801,
+    originalPrice: {
+      usd: 89,
+      inr: 7712,
     },
-    inrPrice: {
-      monthly: 7712,
-      yearly: 69436,
+    discountedPrice: {
+      usd: 44.50,
+      inr: 3856,
     },
-    user: "per month",
     features: {
-      books: "4 Personalized Stories / Month",
+      books: "2 Personalized Stories (One-Time)",
       format: "Hardcover + eBook",
       personalization: "Full Custom Illustrations",
       extras: "Gift Wrapping & Dedication Page",
@@ -89,15 +85,8 @@ const plans: Plan[] = [
 ];
 
 const Manage = () => {
-  const [enabled, setEnabled] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState<"yearly" | "monthly">("yearly");
   const [currency, setCurrency] = useState<Currency>('USD'); // Default to USD
   const [isLoading, setIsLoading] = useState(true);
-
-  const toggleEnabled = () => {
-    setEnabled((prevEnabled) => !prevEnabled);
-    setSelectedCategory((prevCategory) => (prevCategory === "yearly" ? "monthly" : "yearly"));
-  };
 
   // Detect user's country and set currency accordingly
   useEffect(() => {
@@ -126,19 +115,19 @@ const Manage = () => {
     setCurrency(prev => prev === 'INR' ? 'USD' : 'INR');
   };
 
-  const formatPrice = (price: number, inrPrice: number): string => {
-    return currency === 'INR' ? `₹${inrPrice}` : `$${price}`;
+  const formatPrice = (price: number): string => {
+    return currency === 'INR' ? `₹${price.toLocaleString()}` : `$${price.toFixed(2)}`;
   };
 
   const filteredData = plans.map((plan) => {
-    const price = plan.price[selectedCategory];
-    const inrPrice = plan.inrPrice[selectedCategory];
+    const price = currency === 'INR' ? plan.discountedPrice.inr : plan.discountedPrice.usd;
+    const originalPrice = currency === 'INR' ? plan.originalPrice.inr : plan.originalPrice.usd;
     return {
       ...plan,
       price,
-      inrPrice,
-      formattedPrice: formatPrice(price, inrPrice),
-      usdPrice: price // Store the USD price for displaying in the INR view
+      originalPrice,
+      formattedPrice: formatPrice(price),
+      formattedOriginalPrice: formatPrice(originalPrice)
     };
   });
 
@@ -174,49 +163,32 @@ const Manage = () => {
         <div className="md:flex md:justify-around mt-20">
           <div className="flex gap-5 justify-center md:justify-start">
             <Image src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/manage/right.svg`} alt="right-icon" width={21} height={14} />
-            <h4 className="text-18 font-semibold">Your First Adventure Starts Today</h4>
+            <h4 className="text-18 font-semibold">Get Started Instantly</h4>
           </div>
           <div className="flex gap-5 justify-center md:justify-start">
             <Image src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/manage/right.svg`} alt="right-icon" width={21} height={14} />
-            <h4 className="text-18 font-semibold">Personalized Stories Every Month</h4>
+            <h4 className="text-18 font-semibold">Keep Forever</h4>
           </div>
           <div className="flex gap-5 justify-center md:justify-start">
             <Image src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/manage/right.svg`} alt="right-icon" width={21} height={14} />
-            <h4 className="text-18 font-semibold">Cancel Anytime, No Questions Asked</h4>
+            <h4 className="text-18 font-semibold">No Subscription Needed</h4>
           </div>
         </div>
 
         <div className="mt-6 relative text-center">
-          <div className="dance-text sm:-ml-80 text-center sm:-rotate-[10deg] mb-5">get 3 months free</div>
-          <Image src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/manage/toggle.svg`} alt="toggle-image" width={24} height={24} className="absolute left-[37%] top-8" />
-          <div className="flex justify-center items-center gap-4">
-            <h3 className="text-14 font-medium">Billed Yearly</h3>
-            <Switch
-              checked={enabled}
-              onChange={toggleEnabled}
-              className="relative inline-flex h-6 w-11 items-center rounded-full bg-black"
-            >
-              <span className="sr-only">Toggle billing period</span>
-              <span
-                className={`inline-block h-4 w-4 transform rounded-full bg-white transition ${enabled ? "translate-x-6" : "translate-x-1"}`}
-              />
-            </Switch>
-            <h3 className="text-14 font-medium">Billed Monthly</h3>
-          </div>
+          <div className="dance-text text-center text-red-500 font-bold text-xl mb-5">50% OFF - LIMITED TIME OFFER!</div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-16 gap-14 manage justify-items-center">
           {filteredData.map((items, i) => (
             <div className="shadow-manage-shadow border border-border text-center p-10 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-primary transform hover:scale-[1.02] rounded-lg w-full max-w-sm" key={i}>
-              <h2 className="text-2xl font-bold mb-4">{items.heading}</h2>
-              <h3 className="text-4xl font-bold mb-2">{items.formattedPrice}</h3>
-              <p className="text-gray-600 mb-6">
-                {selectedCategory === 'yearly' ? 'per year' : 'per month'}
-                {currency === 'INR' ? (
-                  <span className="text-sm"> (≈ ${items.usdPrice} USD)</span>
-                ) : (
-                  <span className="text-sm"> (billed in USD)</span>
-                )}
+              <h2 className="text-2xl font-bold mb-2">{items.heading}</h2>
+              <div className="mb-2">
+                <span className="text-4xl font-bold text-primary">{items.formattedPrice}</span>
+                <span className="ml-2 text-gray-400 line-through">{items.formattedOriginalPrice}</span>
+              </div>
+              <p className="text-gray-600 mb-4 text-sm">
+                One-time payment
               </p>
               {/* Map through the features object and render each key-value pair dynamically */}
               {Object.entries(items.features).map(([key, value]) => (
@@ -226,8 +198,7 @@ const Manage = () => {
               ))}
               <div className="mt-6">
                 <PaymentButton 
-                  planName={items.heading} 
-                  billingPeriod={selectedCategory}
+                  planName={items.heading}
                 />
               </div>
             </div>

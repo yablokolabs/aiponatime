@@ -2,34 +2,23 @@
 
 interface PaymentButtonProps {
   planName: PlanName;
-  billingPeriod: BillingPeriod;
 }
 
 export type PlanName = 'Story Starter' | 'Story Explorer' | 'Story Legend';
-type BillingPeriod = 'monthly' | 'yearly';
 
-const getPaymentUrl = ({ planName, billingPeriod }: PaymentButtonProps) => {
-  const planUrls: Record<PlanName, Record<BillingPeriod, string>> = {
-    'Story Starter': {
-      monthly: 'https://payments.cashfree.com/forms/AIponATime-starter',
-      yearly: 'https://payments.cashfree.com/forms/AIponATime-starter-yearly'
-    },
-    'Story Explorer': {
-      monthly: 'https://payments.cashfree.com/forms/AIponATime-explorer',
-      yearly: 'https://payments.cashfree.com/forms/AIponATime-explorer-yearly'
-    },
-    'Story Legend': {
-      monthly: 'https://payments.cashfree.com/forms/AIponATime-legend',
-      yearly: 'https://payments.cashfree.com/forms/AIponATime-legend-yearly'
-    }
+const getPaymentUrl = (planName: PlanName): string => {
+  const planUrls: Record<PlanName, string> = {
+    'Story Starter': 'https://payments.cashfree.com/forms/AIponATime-starter-onetime',
+    'Story Explorer': 'https://payments.cashfree.com/forms/AIponATime-explorer-onetime',
+    'Story Legend': 'https://payments.cashfree.com/forms/AIponATime-legend-onetime'
   };
-  return planUrls[planName][billingPeriod];
+  return planUrls[planName];
 };
 
-export const PaymentButton = ({ planName, billingPeriod }: PaymentButtonProps) => {
+export const PaymentButton = ({ planName }: PaymentButtonProps) => {
   return (
     <form>
-      <a href={getPaymentUrl({ planName, billingPeriod })} target="_parent">
+      <a href={getPaymentUrl(planName)} target="_parent">
         <div className="button-container" style={{ background: '#F9FAFF' }}>
           <div>
             <img src="https://cashfreelogo.cashfree.com/cashfreepayments/logosvgs/Group_4355.svg" alt="logo" className="logo-container" />
