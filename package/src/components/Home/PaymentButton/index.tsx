@@ -8,9 +8,9 @@ export type PlanName = 'Story Starter' | 'Story Explorer' | 'Story Legend';
 
 const getPaymentUrl = (planName: PlanName): string => {
   const planUrls: Record<PlanName, string> = {
-    'Story Starter': 'https://payments.cashfree.com/forms/AIponATime-starter-onetime',
-    'Story Explorer': 'https://payments.cashfree.com/forms/AIponATime-explorer-onetime',
-    'Story Legend': 'https://payments.cashfree.com/forms/AIponATime-legend-onetime'
+    'Story Starter': 'https://payments.cashfree.com/forms/AIponATime-starter',
+    'Story Explorer': 'https://payments.cashfree.com/forms/AIponATime-explorer',
+    'Story Legend': 'https://payments.cashfree.com/forms/AIponATime-legend'
   };
   return planUrls[planName];
 };
