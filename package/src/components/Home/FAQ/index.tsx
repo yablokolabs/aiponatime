@@ -50,7 +50,7 @@ const FAQ = () => {
                     </Disclosure.Button>
                     <Disclosure.Panel className="text-base text-black/50 pt-4 mt-6 text-left border-t border-border">
                       <div className="lg:max-w-70%">
-                        Every subscription includes a high-resolution PDF delivered instantly. The Explorer and Legend plans also ship a premium hardcover to your doorstep.
+                        Every purchase includes a high-resolution PDF delivered instantly. The Explorer and Legend editions also come with a premium hardcover shipped straight to your doorstep.
                       </div>
                     </Disclosure.Panel>
                   </>
@@ -58,7 +58,7 @@ const FAQ = () => {
               </Disclosure>
             </div>
 
-            <div className="mx-auto w-full max-w-5xl rounded-2xl p-8 bg-white">
+            <div className="mx-auto w-full max-w-5xl rounded-2xl p-8 bg-white mb-5">
               <Disclosure as="div" className="mt-2">
                 {({ open }) => (
                   <>
@@ -74,6 +74,50 @@ const FAQ = () => {
                     <Disclosure.Panel className="text-base text-black/50 pt-4 mt-6 font-normal text-left border-t border-border">
                       <div className="lg:max-w-70%">
                         Digital PDFs are ready within 1-2 business days. Printed books are produced in 5-7 business days and shipped worldwide; delivery times vary by location.
+                      </div>
+                    </Disclosure.Panel>
+                  </>
+                )}
+              </Disclosure>
+            </div>
+            <div className="mx-auto w-full max-w-5xl rounded-2xl p-8 bg-white mb-5">
+              <Disclosure as="div" className="mt-2">
+                {({ open }) => (
+                  <>
+                    <Disclosure.Button className="flex w-full justify-between items-center rounded-lg text-left text-2xl font-medium focus:outline-hidden">
+                      <span className="text-black">Why choose physical books in the digital age?</span>
+                      <div
+                        className={`h-5 w-5 transform transition-transform duration-300 ${open ? "rotate-180" : ""
+                          }`}
+                      >
+                        <Icon icon="lucide:chevron-up" width="20" height="20" />
+                      </div>
+                    </Disclosure.Button>
+                    <Disclosure.Panel className="text-base text-black/50 pt-4 mt-6 font-normal text-left border-t border-border">
+                      <div className="lg:max-w-70%">
+                        While we offer digital formats, physical books provide unique benefits for children's development. Research shows that non-screen reading time can boost IQ, enhance focus, and improve cognitive development. Physical books also help children engage more deeply with the content and develop better reading habits.
+                      </div>
+                    </Disclosure.Panel>
+                  </>
+                )}
+              </Disclosure>
+            </div>
+            <div className="mx-auto w-full max-w-5xl rounded-2xl p-8 bg-white">
+              <Disclosure as="div" className="mt-2">
+                {({ open }) => (
+                  <>
+                    <Disclosure.Button className="flex w-full justify-between items-center rounded-lg text-left text-2xl font-medium focus:outline-hidden">
+                      <span className="text-black">Why be the hero of your own book?</span>
+                      <div
+                        className={`h-5 w-5 transform transition-transform duration-300 ${open ? "rotate-180" : ""
+                          }`}
+                      >
+                        <Icon icon="lucide:chevron-up" width="20" height="20" />
+                      </div>
+                    </Disclosure.Button>
+                    <Disclosure.Panel className="text-base text-black/50 pt-4 mt-6 font-normal text-left border-t border-border">
+                      <div className="lg:max-w-70%">
+                        Research shows that when children see themselves as the heroes of their own stories, they develop a stronger love for reading and build self-confidence that carries into every part of their daily lives.
                       </div>
                     </Disclosure.Panel>
                   </>
