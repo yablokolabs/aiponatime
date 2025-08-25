@@ -100,7 +100,16 @@ const Header: React.FC = () => {
               }}>
               Sign Up
             </button>
-            {/* Hamburger menu button removed */}
+            {/* Hamburger menu button for mobile */}
+            <button
+              onClick={() => setNavbarOpen(!navbarOpen)}
+              className="lg:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 focus:outline-none"
+              aria-label="Toggle mobile menu"
+            >
+              <span className={`block h-0.5 w-6 bg-black transition-all duration-300 ease-out ${navbarOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+              <span className={`block h-0.5 w-6 bg-black transition-all duration-300 ease-out ${navbarOpen ? 'opacity-0' : ''}`}></span>
+              <span className={`block h-0.5 w-6 bg-black transition-all duration-300 ease-out ${navbarOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+            </button>
           </div>
         </div>
         {navbarOpen && (
@@ -125,26 +134,13 @@ const Header: React.FC = () => {
           </div>
           <nav className="flex flex-col items-start p-4">
             {headerData.map((item, index) => (
-              <MobileHeaderLink key={index} item={item} />
+              <MobileHeaderLink 
+                key={index} 
+                item={item} 
+                onClose={() => setNavbarOpen(false)}
+              />
             ))}
-            <div className='mt-4 flex flex-col space-y-4 w-full'>
-              <button
-                className='bg-primary text-white px-4 py-2 rounded-lg border border-primary hover:text-primary hover:bg-transparent hover:cursor-pointer transition duration-300 ease-in-out w-full text-left pl-4'
-                onClick={() => {
-                  setIsSignInOpen(true);
-                  setNavbarOpen(false);
-                }}>
-                Sign In
-              </button>
-              <button
-                className='bg-transparent text-primary border border-primary px-4 py-2 rounded-lg w-full text-left pl-4 transition duration-300 ease-in-out hover:bg-primary hover:text-white hover:cursor-pointer'
-                onClick={() => {
-                  setIsSignUpOpen(true);
-                  setNavbarOpen(false);
-                }}>
-                Sign Up
-              </button>
-            </div>
+
           </nav>
         </div>
       </div>
