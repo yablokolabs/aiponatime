@@ -68,21 +68,39 @@ const Hero = () => {
                 <Sparkles />
               </div>
             </motion.div>
-            <motion.a
-              href="https://mapmaster7.gumroad.com/l/ihvhsj"
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="relative group inline-block w-full sm:w-auto"
-            >
-              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-500 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-200 group-hover:duration-200"></div>
-              <div className="relative bg-gradient-to-r from-purple-600 to-pink-500 text-white text-base sm:text-lg md:text-xl font-semibold py-3 px-8 sm:py-4 sm:px-10 md:py-5 md:px-12 rounded-full hover:shadow-lg hover:scale-105 transform transition-all duration-200 w-full text-center">
-                Buy Audio Book
-                <span className="ml-1 sm:ml-2">🎧</span>
-              </div>
-            </motion.a>
+            <motion.div className="space-y-4 mt-6">
+              <motion.a
+                href="https://mapmaster7.gumroad.com/l/ihvhsj"
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="relative group inline-block w-full sm:w-auto"
+              >
+                <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-500 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-200 group-hover:duration-200"></div>
+                <div className="relative bg-gradient-to-r from-purple-600 to-pink-500 text-white text-base sm:text-lg md:text-xl font-semibold py-3 px-8 sm:py-4 sm:px-10 md:py-5 md:px-12 rounded-full hover:shadow-lg hover:scale-105 transform transition-all duration-200 w-full text-center">
+                  Buy Audio Book
+                  <span className="ml-1 sm:ml-2">🎧</span>
+                </div>
+              </motion.a>
+              
+              <motion.a
+                href="#illustration-form"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="relative group inline-block w-full sm:w-auto mt-4"
+              >
+                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-200 group-hover:duration-200"></div>
+                <div className="relative bg-gradient-to-r from-blue-600 to-cyan-500 text-white text-base sm:text-lg md:text-xl font-semibold py-3 px-8 sm:py-4 sm:px-10 md:py-5 md:px-12 rounded-full hover:shadow-lg hover:scale-105 transform transition-all duration-300 w-full text-center">
+                  <span className="relative z-10 flex items-center justify-center">
+                    Free Illustration
+                    <span className="ml-2 group-hover:animate-bounce">🎨</span>
+                  </span>
+                </div>
+              </motion.a>
+            </motion.div>
           </div>
           <div className="md:col-span-5 lg:col-span-7 order-1 md:order-2 flex items-center">
             <div className="w-4/5 md:w-full lg:w-[85%] max-w-2xl mx-auto">
