@@ -8,7 +8,11 @@ import SocialSignIn from "../SocialSignIn";
 import Logo from "@/components/Layout/Header/Logo"
 import Loader from "@/components/Common/Loader";
 
-const Signin = () => {
+interface SigninProps {
+  onSwitchToSignUp?: () => void;
+}
+
+const Signin = ({ onSwitchToSignUp }: SigninProps = {}) => {
   const router = useRouter();
 
   const [loginData, setLoginData] = useState({
@@ -22,6 +26,29 @@ const Signin = () => {
     e.preventDefault();
 
     setLoading(true);
+    
+    // Demo authentication - replace with real NextAuth setup
+    if (loginData.email && loginData.password) {
+      // Simulate API call
+      setTimeout(() => {
+        toast.success("Login successful! Welcome back!");
+        setLoading(false);
+        
+        // Close modal if it's being used in header
+        if (onSwitchToSignUp) {
+          // This indicates we're in a modal, so we should close it
+          window.location.reload(); // Simple way to "login" for demo
+        } else {
+          router.push("/");
+        }
+      }, 1000);
+    } else {
+      setLoading(false);
+      toast.error("Please enter both email and password");
+    }
+    
+    // Uncomment below for real NextAuth integration:
+    /*
     signIn("credentials", { ...loginData, redirect: false })
       .then((callback) => {
         if (callback?.error) {
@@ -42,6 +69,7 @@ const Signin = () => {
         console.log(err.message);
         toast.error(err.message);
       });
+    */
   };
 
   return (
@@ -98,9 +126,17 @@ const Signin = () => {
       </Link>
       <p className="text-body-secondary text-white text-base">
         Not a member yet?{" "}
-        <Link href="/" className="text-primary hover:underline">
-          Sign Up
-        </Link>
+        {onSwitchToSignUp ? (
+          <button 
+            onClick={onSwitchToSignUp}
+            className="text-primary hover:underline">
+            Sign Up
+          </button>
+        ) : (
+          <Link href="/signup" className="text-primary hover:underline">
+            Sign Up
+          </Link>
+        )}
       </p>
     </>
   );

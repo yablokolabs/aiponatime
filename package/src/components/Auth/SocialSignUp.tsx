@@ -1,12 +1,17 @@
 import React from "react";
-import { signIn } from "next-auth/react";
+import toast from "react-hot-toast";
+// import { signIn } from "next-auth/react";
 
 const SocialSignUp = () => {
   return (
     <>
       <div className="flex gap-4">
         <button
-          onClick={() => signIn("google")}
+          onClick={() => {
+            toast.success("Google Sign Up - Demo Mode! Welcome! 🎉");
+            setTimeout(() => window.location.reload(), 1500);
+            // signIn("google") // Uncomment for real Google auth
+          }}
           className="flex w-full items-center justify-center gap-2.5 rounded-lg p-3.5 hover:bg-slateGray bg-deepSlate text-white"
         >
           Sign Up
@@ -49,7 +54,11 @@ const SocialSignUp = () => {
         </button>
 
         <button
-          onClick={() => signIn("github")}
+          onClick={() => {
+            toast.success("GitHub Sign Up - Demo Mode! Welcome! 🐙✨");
+            setTimeout(() => window.location.reload(), 1500);
+            // signIn("github") // Uncomment for real GitHub auth
+          }}
           className="flex w-full items-center justify-center gap-2.5 rounded-lg p-3.5 hover:bg-slateGray bg-deepSlate text-white"
         >
           Sign Up

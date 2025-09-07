@@ -13,6 +13,7 @@ import Testimonial from "@/components/Home/Testimonials";
 import Articles from "@/components/Home/Articles";
 import Join from "@/components/Home/Joinus";
 import Insta from "@/components/Home/Insta";
+import GhibliGenerator from "@/components/GhibliGenerator";
 import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "AIponATime™ AI-Powered Personalized Storytelling for Kids",
@@ -29,6 +30,7 @@ export default function Home() {
       <Work />
 
       <Featured />
+      <GhibliGenerator />
       <Manage />
       <FAQ />
       <Testimonial />

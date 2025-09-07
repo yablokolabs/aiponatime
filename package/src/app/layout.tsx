@@ -11,6 +11,7 @@ import Aoscompo from '@/utils/aos'
 import { Metadata } from 'next'
 import { ReactNode } from 'react'
 import { GoogleTagManager, GoogleTagManagerNoScript } from '@/components/GoogleTagManager'
+import ToasterContext from '@/app/api/contex/ToasetContex'
 
 export const metadata: Metadata = {
   title: {
@@ -82,6 +83,7 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50 overflow-x-hidden">
         <GoogleTagManagerNoScript />
         <GoogleTagManager />
+        <ToasterContext />
         <ThemeProvider>
           <KidsBackground />
           <MagicDust />

@@ -6,7 +6,11 @@ import SocialSignUp from "../SocialSignUp";
 import Logo from "@/components/Layout/Header/Logo";
 import { useState } from "react";
 import Loader from "@/components/Common/Loader";
-const SignUp = () => {
+interface SignUpProps {
+  onSwitchToSignIn?: () => void;
+}
+
+const SignUp = ({ onSwitchToSignIn }: SignUpProps = {}) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
@@ -18,6 +22,29 @@ const SignUp = () => {
     const value = Object.fromEntries(data.entries());
     const finalData = { ...value };
 
+    // Demo registration - replace with real API setup
+    if (finalData.name && finalData.email && finalData.password) {
+      // Simulate API call
+      setTimeout(() => {
+        toast.success("Successfully registered! Welcome to AIponATime! 🎉");
+        setLoading(false);
+        
+        // Switch to sign in if in modal, otherwise redirect
+        if (onSwitchToSignIn) {
+          setTimeout(() => {
+            onSwitchToSignIn();
+          }, 1500);
+        } else {
+          router.push("/signin");
+        }
+      }, 1000);
+    } else {
+      setLoading(false);
+      toast.error("Please fill in all required fields");
+    }
+    
+    // Uncomment below for real API integration:
+    /*
     fetch("/api/register", {
       method: "POST",
       headers: {
@@ -35,6 +62,7 @@ const SignUp = () => {
         toast.error(err.message);
         setLoading(false);
       });
+    */
   };
 
   return (
@@ -102,9 +130,17 @@ const SignUp = () => {
 
       <p className="text-body-secondary text-white text-base">
         Already have an account?
-        <Link href="/" className="pl-2 text-primary hover:underline">
-          Sign In
-        </Link>
+        {onSwitchToSignIn ? (
+          <button 
+            onClick={onSwitchToSignIn}
+            className="pl-2 text-primary hover:underline">
+            Sign In
+          </button>
+        ) : (
+          <Link href="/signin" className="pl-2 text-primary hover:underline">
+            Sign In
+          </Link>
+        )}
       </p>
     </>
   );
