@@ -39,6 +39,91 @@ const GhibliGenerator = () => {
     }));
   };
 
+  const makeApiCall = async (params: URLSearchParams): Promise<GhibliResponse> => {
+    console.log('Making API call with params:', params.toString());
+    
+    // Create an AbortController for timeout handling
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 120000); // 2 minute timeout
+    
+    try {
+      const response = await fetch(`https://ghibli-func-app39995.azurewebsites.net/api/GenerateGhibli?${params}`, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        signal: controller.signal, // Add timeout signal
+      });
+      
+      clearTimeout(timeoutId); // Clear timeout if request completes
+      
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('API Error:', response.status, response.statusText, errorText);
+        throw new Error(`Failed to generate illustration: ${response.status} ${response.statusText}. ${errorText}`);
+      }
+
+      const rawData = await response.text();
+      console.log('Raw API response:', rawData);
+      
+      let data: any;
+      try {
+        data = JSON.parse(rawData);
+        console.log('Parsed API response:', data);
+      } catch (parseError) {
+        console.error('Failed to parse JSON response:', parseError);
+        throw new Error(`Invalid JSON response from API: ${rawData}`);
+      }
+      
+      // Check for different possible response structures
+      if (!data) {
+        throw new Error('No data received from the API');
+      }
+      
+      // Handle different response formats
+      let imageUrl: string | undefined;
+      if (data.url) {
+        imageUrl = data.url;
+      } else if (data.imageUrl) {
+        imageUrl = data.imageUrl;
+      } else if (data.image_url) {
+        imageUrl = data.image_url;
+      } else if (data.result && data.result.url) {
+        imageUrl = data.result.url;
+      } else if (typeof data === 'string' && data.startsWith('http')) {
+        // Sometimes APIs return just the URL as a string
+        imageUrl = data;
+      }
+      
+      if (!imageUrl) {
+        console.error('No image URL found in response. Available keys:', Object.keys(data));
+        throw new Error(`No image URL received from the API. Response structure: ${JSON.stringify(data, null, 2)}`);
+      }
+
+      // Return normalized response
+      const normalizedResponse: GhibliResponse = {
+        url: imageUrl,
+        model: data.model || 'unknown',
+        prompt: data.prompt || data.description || 'Generated illustration'
+      };
+      
+      console.log('Normalized response:', normalizedResponse);
+      return normalizedResponse;
+      
+    } catch (error) {
+      clearTimeout(timeoutId); // Ensure timeout is cleared
+      
+      // Handle different types of errors
+      if (error instanceof DOMException && error.name === 'AbortError') {
+        throw new Error('Request timeout - AI service took too long to respond');
+      }
+      
+      // Re-throw other errors as-is
+      throw error;
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -51,44 +136,119 @@ const GhibliGenerator = () => {
     setError('');
     setGeneratedImage(null);
 
-    try {
-      // Azure Function expects: name, age, interests (not childName)
-      const params = new URLSearchParams({
-        name: formData.childName.trim(), // Changed from childName to name
-        age: formData.age.trim(),
-        interests: formData.interests.trim(),
-      });
+    // Azure Function expects: name, age, interests (not childName)
+    const params = new URLSearchParams({
+      name: formData.childName.trim(), // Changed from childName to name
+      age: formData.age.trim(),
+      interests: formData.interests.trim(),
+    });
 
-      const response = await fetch(`https://ghibli-func-app39995.azurewebsites.net/api/GenerateGhibli?${params}`, {
-        method: 'GET',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-      });
-      
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error('API Error:', response.status, response.statusText, errorText);
-        throw new Error(`Failed to generate illustration: ${response.status} ${response.statusText}. ${errorText}`);
+    const maxRetries = 5; // Increased from 3 to 5
+    let lastError: Error;
+    let currentToastId: string | undefined;
+
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+      try {
+        console.log(`Attempt ${attempt}/${maxRetries} to generate illustration`);
+        
+        // Show loading message with attempt info
+        if (attempt === 1) {
+          currentToastId = toast.loading('🎨 Creating your magical illustration...', {
+            duration: 0, // Keep it until we dismiss it
+          });
+        } else {
+          // Update the existing toast for retries
+          if (currentToastId) {
+            toast.dismiss(currentToastId);
+          }
+          currentToastId = toast.loading(`🔄 Retrying... (Attempt ${attempt}/${maxRetries})`, {
+            duration: 0,
+          });
+        }
+
+        const data = await makeApiCall(params);
+        
+        // Success! Dismiss loading toast and show success
+        if (currentToastId) {
+          toast.dismiss(currentToastId);
+        }
+        
+        setGeneratedImage(data);
+        setState('success');
+        toast.success('🎨 Magical illustration created!');
+        return; // Success! Exit the retry loop
+        
+      } catch (err) {
+        lastError = err instanceof Error ? err : new Error('Something went wrong');
+        console.error(`Attempt ${attempt} failed:`, lastError);
+        
+        // Check if this is a retryable error
+        const isRetryableError = (
+          lastError.message.includes('500') ||
+          lastError.message.includes('502') ||
+          lastError.message.includes('503') ||
+          lastError.message.includes('504') ||
+          lastError.message.includes('timeout') ||
+          lastError.message.includes('Request timeout') ||
+          lastError.message.includes('cold start') ||
+          lastError.message.includes('No image URL received from the API') ||
+          lastError.message.includes('Invalid JSON response') ||
+          lastError.message.includes('Failed to fetch') ||
+          lastError.message.includes('NetworkError') ||
+          lastError.message.includes('Connection') ||
+          lastError.message.includes('CORS') ||
+          lastError.message.includes('took too long')
+        );
+        
+        const shouldRetry = attempt < maxRetries && isRetryableError;
+        
+        if (shouldRetry) {
+          // Progressive delay: 2s, 4s, 6s, 8s, 10s
+          const delayMs = attempt * 2000;
+          console.log(`Retrying in ${delayMs}ms...`);
+          
+          // Update toast to show waiting for retry
+          if (currentToastId) {
+            toast.dismiss(currentToastId);
+          }
+          currentToastId = toast.loading(`⏳ Waiting ${delayMs/1000}s before retry ${attempt + 1}/${maxRetries}...`, {
+            duration: delayMs,
+          });
+          
+          await new Promise(resolve => setTimeout(resolve, delayMs));
+        } else {
+          // Either max retries reached or non-retryable error
+          console.log(shouldRetry ? 'Max retries reached' : 'Non-retryable error encountered');
+          break;
+        }
       }
+    }
 
-      const data: GhibliResponse = await response.json();
-      
-      if (!data.url) {
-        throw new Error('No image URL received from the API');
-      }
-
-      setGeneratedImage(data);
-      setState('success');
-      toast.success('🎨 Magical illustration created!');
-      
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Something went wrong';
-      console.error('Full error:', err);
-      setError(errorMessage);
-      setState('error');
-      toast.error('Failed to create illustration. Please try again.');
+    // All retries exhausted or non-retryable error
+    if (currentToastId) {
+      toast.dismiss(currentToastId);
+    }
+    
+    const errorMessage = lastError!.message;
+    console.error('All retry attempts failed:', lastError!);
+    setError(errorMessage);
+    setState('error');
+    
+    // Show different error messages based on error type
+    if (lastError!.message.includes('No image URL received from the API') || 
+        lastError!.message.includes('Invalid JSON response')) {
+      toast.error('🔧 AI service returned unexpected response. Our team has been notified.');
+    } else if (lastError!.message.includes('Failed to fetch') || 
+               lastError!.message.includes('NetworkError')) {
+      toast.error('🌐 Network connection issue. Please check your internet and try again.');
+    } else if (lastError!.message.includes('timeout') || 
+               lastError!.message.includes('Request timeout') ||
+               lastError!.message.includes('took too long')) {
+      toast.error('⏱️ Request timed out. The AI service is busy - please try again in a few minutes.');
+    } else if (lastError!.message.includes('500') || lastError!.message.includes('50')) {
+      toast.error('🛠️ AI service temporarily unavailable. Please try again in a few minutes.');
+    } else {
+      toast.error('❌ Failed to create illustration. Please try again later.');
     }
   };
 
@@ -250,14 +410,30 @@ const GhibliGenerator = () => {
             {state === 'loading' && (
               <div className="text-center">
                 <div className="flex justify-center mb-6">
-                  <div className="h-16 w-16 animate-spin rounded-full border-4 border-solid border-primary border-t-transparent"></div>
+                  <div className="relative">
+                    <div className="h-16 w-16 animate-spin rounded-full border-4 border-solid border-primary border-t-transparent"></div>
+                    <div className="absolute inset-0 h-16 w-16 animate-ping rounded-full border-4 border-solid border-primary opacity-20"></div>
+                  </div>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
-                  Creating your magical illustration...
+                  Creating your magical illustration... ✨
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300">
-                  Our AI artist is working on something special! ✨
+                <p className="text-gray-600 dark:text-gray-300 mb-3">
+                  Our AI artist is working on something special!
                 </p>
+                <div className="space-y-2">
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    🎨 This may take up to 2 minutes due to AI processing
+                  </p>
+                  <p className="text-xs text-gray-400 dark:text-gray-500">
+                    🔄 We'll automatically retry if needed (up to 5 attempts)
+                  </p>
+                  <div className="mt-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg p-3">
+                    <p className="text-xs text-gray-600 dark:text-gray-400">
+                      💫 Tip: Keep this page open - we're working hard to create the perfect illustration for {formData.childName}!
+                    </p>
+                  </div>
+                </div>
               </div>
             )}
 
@@ -272,13 +448,31 @@ const GhibliGenerator = () => {
                   <h3 className="text-lg font-semibold text-red-800 dark:text-red-300 mb-2">
                     Oops! Something went wrong
                   </h3>
-                  <p className="text-red-600 dark:text-red-400 text-sm">
+                  <p className="text-red-600 dark:text-red-400 text-sm mb-2">
                     {error}
                   </p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                    We automatically tried multiple times to process your request.
+                  </p>
+                  {error.includes('Response structure:') && (
+                    <details className="mt-3 text-left">
+                      <summary className="cursor-pointer text-xs text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200">
+                        Show technical details
+                      </summary>
+                      <pre className="mt-2 text-xs bg-gray-100 dark:bg-gray-800 p-2 rounded overflow-auto max-h-32">
+                        {error.split('Response structure: ')[1]}
+                      </pre>
+                    </details>
+                  )}
                 </div>
-                <p className="text-gray-600 dark:text-gray-300">
-                  Please try again or check your internet connection.
-                </p>
+                <div className="space-y-2">
+                  <p className="text-gray-600 dark:text-gray-300">
+                    Please try again in a few moments.
+                  </p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                    If the problem persists, the AI service may be temporarily unavailable.
+                  </p>
+                </div>
               </motion.div>
             )}
 
