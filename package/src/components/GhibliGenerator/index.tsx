@@ -16,6 +16,7 @@ type FormData = {
   childName: string;
   age: string;
   interests: string;
+  puzzleAnswer?: string;
 };
 
 type GenerationState = 'idle' | 'loading' | 'success' | 'error';
@@ -25,7 +26,14 @@ const GhibliGenerator = () => {
     childName: '',
     age: '',
     interests: '',
+    puzzleAnswer: '',
   });
+  
+  const [puzzleImages, setPuzzleImages] = useState<string[]>([]);
+  const [correctImageIndex, setCorrectImageIndex] = useState<number>(-1);
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number>(-1);
+  const [puzzleError, setPuzzleError] = useState<string>('');
+  const [puzzleLoaded, setPuzzleLoaded] = useState<boolean>(false);
   
   const [state, setState] = useState<GenerationState>('idle');
   const [generatedImage, setGeneratedImage] = useState<GhibliResponse | null>(null);
@@ -131,6 +139,15 @@ const GhibliGenerator = () => {
       toast.error('Please fill in all fields');
       return;
     }
+    
+    // Validate puzzle captcha
+    if (formData.puzzleAnswer !== 'correct') {
+      setPuzzleError('Please select the cat image to continue');
+      toast.error('Please solve the puzzle by clicking the cat image');
+      return;
+    }
+    
+    setPuzzleError('');
 
     setState('loading');
     setError('');
@@ -257,11 +274,76 @@ const GhibliGenerator = () => {
       childName: '',
       age: '',
       interests: '',
+      puzzleAnswer: '',
     });
     setGeneratedImage(null);
     setState('idle');
     setError('');
+    resetPuzzle();
   };
+  
+  const generatePuzzle = () => {
+    // Use a more reliable cat image source with timestamp to avoid caching
+    const timestamp = Date.now();
+    const catImage = `https://cataas.com/cat?width=100&height=100&t=${timestamp}`;
+    
+    // Generate random images with unique identifiers
+    const randomImages = [
+      `https://picsum.photos/100/100?random=${timestamp}&t=1`,
+      `https://picsum.photos/100/100?random=${timestamp + 1}&t=2`
+    ];
+    
+    const allImages = [catImage, ...randomImages];
+    const shuffledImages = allImages.sort(() => Math.random() - 0.5);
+    const catIndex = shuffledImages.indexOf(catImage);
+    
+    setPuzzleImages(shuffledImages);
+    setCorrectImageIndex(catIndex);
+    setSelectedImageIndex(-1);
+    setPuzzleError('');
+    setFormData(prev => ({ ...prev, puzzleAnswer: '' }));
+    setPuzzleLoaded(false);
+  };
+  
+  const resetPuzzle = () => {
+    setPuzzleImages([]);
+    setCorrectImageIndex(-1);
+    setSelectedImageIndex(-1);
+    setPuzzleError('');
+    setFormData(prev => ({ ...prev, puzzleAnswer: '' }));
+    setPuzzleLoaded(false);
+  };
+  
+  const handleImageClick = (index: number) => {
+    setSelectedImageIndex(index);
+    
+    if (index === correctImageIndex) {
+      setFormData(prev => ({ ...prev, puzzleAnswer: 'correct' }));
+      setPuzzleError('');
+    } else {
+      setFormData(prev => ({ ...prev, puzzleAnswer: 'incorrect' }));
+      setPuzzleError('That\'s not the cat! Please try again.');
+    }
+  };
+  
+  const handleImageLoad = () => {
+    // Check if all images are loaded
+    const loadedImages = puzzleImages.filter((_, index) => {
+      const img = document.querySelector(`img[data-puzzle-index="${index}"]`) as HTMLImageElement;
+      return img && img.complete;
+    });
+    
+    if (loadedImages.length === puzzleImages.length && puzzleImages.length > 0) {
+      setPuzzleLoaded(true);
+    }
+  };
+  
+  // Generate puzzle when component mounts or when form is reset
+  React.useEffect(() => {
+    if (state === 'idle' && puzzleImages.length === 0) {
+      generatePuzzle();
+    }
+  }, [state]);
 
   return (
     <section className="relative py-20 md:py-28 overflow-hidden">
@@ -350,6 +432,102 @@ const GhibliGenerator = () => {
                   className="w-full rounded-md border border-dark_border/60 border-solid bg-transparent px-5 py-3 text-base text-dark outline-hidden transition placeholder:text-grey focus:border-primary focus-visible:shadow-none dark:text-white dark:focus:border-primary"
                   disabled={state === 'loading'}
                 />
+              </div>
+
+              {/* Puzzle Captcha */}
+              <div className="space-y-3">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Security Check: Click the cat image 🐱
+                </label>
+                
+                {puzzleImages.length > 0 && (
+                  <div className="flex gap-3 justify-center">
+                    {puzzleImages.map((src, index) => (
+                      <div
+                        key={index}
+                        onClick={() => handleImageClick(index)}
+                        className={`relative cursor-pointer rounded-lg overflow-hidden transition-all duration-200 ${
+                          selectedImageIndex === index
+                            ? index === correctImageIndex
+                              ? 'ring-4 ring-green-500 ring-opacity-60'
+                              : 'ring-4 ring-red-500 ring-opacity-60'
+                            : 'hover:ring-2 hover:ring-primary hover:ring-opacity-50'
+                        }`}
+                      >
+                        <img
+                          src={src}
+                          alt={`Puzzle image ${index + 1}`}
+                          data-puzzle-index={index}
+                          className="w-[100px] h-[100px] object-cover border border-gray-200 dark:border-gray-600"
+                          onLoad={handleImageLoad}
+                          onError={(e) => {
+                            // Fallback for cat image if primary source fails
+                            if (index === correctImageIndex) {
+                              const img = e.target as HTMLImageElement;
+                              // Try alternative cat service
+                              if (img.src.includes('cataas.com')) {
+                                img.src = `https://placekitten.com/100/100?t=${Date.now()}`;
+                              } else if (img.src.includes('placekitten.com')) {
+                                // If both fail, use a simple data URL cat emoji as fallback
+                                const canvas = document.createElement('canvas');
+                                canvas.width = 100;
+                                canvas.height = 100;
+                                const ctx = canvas.getContext('2d')!;
+                                ctx.fillStyle = '#f3f4f6';
+                                ctx.fillRect(0, 0, 100, 100);
+                                ctx.font = '48px serif';
+                                ctx.textAlign = 'center';
+                                ctx.fillStyle = '#374151';
+                                ctx.fillText('🐱', 50, 65);
+                                img.src = canvas.toDataURL();
+                              }
+                            }
+                          }}
+                        />
+                        {selectedImageIndex === index && (
+                          <div className={`absolute inset-0 flex items-center justify-center ${
+                            index === correctImageIndex ? 'bg-green-500' : 'bg-red-500'
+                          } bg-opacity-20`}>
+                            <span className="text-2xl">
+                              {index === correctImageIndex ? '✓' : '✗'}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+                
+                {!puzzleLoaded && puzzleImages.length > 0 && (
+                  <div className="text-center text-sm text-gray-500 dark:text-gray-400">
+                    <div className="inline-flex items-center">
+                      <div className="h-4 w-4 animate-spin rounded-full border-2 border-solid border-gray-400 border-t-transparent mr-2"></div>
+                      Loading puzzle images...
+                    </div>
+                  </div>
+                )}
+                
+                {puzzleError && (
+                  <p className="text-red-500 text-sm text-center">{puzzleError}</p>
+                )}
+                
+                {formData.puzzleAnswer === 'correct' && (
+                  <p className="text-green-600 text-sm text-center flex items-center justify-center">
+                    <span className="mr-1">✓</span>
+                    Great! You found the cat!
+                  </p>
+                )}
+                
+                <div className="text-center">
+                  <button
+                    type="button"
+                    onClick={generatePuzzle}
+                    className="text-sm text-primary hover:text-primary/80 transition-colors duration-200"
+                    disabled={state === 'loading'}
+                  >
+                    🔄 Get new puzzle
+                  </button>
+                </div>
               </div>
 
               <div className="flex gap-4">
