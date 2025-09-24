@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useState } from "react";
 
 interface PaymentButtonProps {
   planName: PlanName;
@@ -6,30 +7,116 @@ interface PaymentButtonProps {
 
 export type PlanName = 'Story Starter' | 'Story Explorer' | 'Story Legend';
 
-const getPaymentUrl = (planName: PlanName): string => {
-  const planUrls: Record<PlanName, string> = {
-    'Story Starter': 'https://payments.cashfree.com/forms/AIponATime-starter',
-    'Story Explorer': 'https://payments.cashfree.com/forms/AIponATime-explorer',
-    'Story Legend': 'https://payments.cashfree.com/forms/AIponATime-legend'
-  };
-  return planUrls[planName];
+// Define Stripe payment links for users outside India
+const stripePaymentLinks: Record<PlanName, string> = {
+  'Story Starter': 'https://buy.stripe.com/7sYfZiaUF3Zoa9tejP48000',
+  'Story Explorer': 'https://buy.stripe.com/7sY9AU4wh8fEftN8Zv48001',
+  'Story Legend': 'https://buy.stripe.com/dRmeVefaVeE2gxRdfL48002'
+};
+
+// Define Cashfree payment links for users in India
+const cashfreePaymentLinks: Record<PlanName, string> = {
+  'Story Starter': 'https://payments.cashfree.com/forms/AIponATime-starter',
+  'Story Explorer': 'https://payments.cashfree.com/forms/AIponATime-explorer',
+  'Story Legend': 'https://payments.cashfree.com/forms/AIponATime-legend'
 };
 
 export const PaymentButton = ({ planName }: PaymentButtonProps) => {
+  const [userCountry, setUserCountry] = useState<string | null>(null);
+  const [isOutsideIndia, setIsOutsideIndia] = useState(false);
+
+  useEffect(() => {
+    // Detect user's country using IP geolocation
+    const detectUserCountry = async () => {
+      try {
+        const response = await fetch('https://ipapi.co/json/');
+        const data = await response.json();
+        setUserCountry(data.country);
+        setIsOutsideIndia(data.country !== 'IN');
+      } catch (error) {
+        console.error('Error detecting user location:', error);
+        // Default to India if there's an error
+        setIsOutsideIndia(false);
+      }
+    };
+
+    detectUserCountry();
+  }, []);
+
+  // Determine which payment link to use based on user's location
+  const getPaymentUrl = (): string => {
+    if (isOutsideIndia) {
+      return stripePaymentLinks[planName];
+    } else {
+      return cashfreePaymentLinks[planName];
+    }
+  };
+
+  // Determine button text based on user's location
+  const getButtonText = (): string => {
+    if (isOutsideIndia) {
+      return 'Pay with Stripe';
+    } else {
+      return 'Pay Now';
+    }
+  };
+
   return (
     <form>
-      <a href={getPaymentUrl(planName)} target="_parent">
+      <a href={userCountry ? getPaymentUrl() : '#'} target="_parent" onClick={(e) => {
+        // Prevent navigation if country detection is still loading
+        if (!userCountry) {
+          e.preventDefault();
+        }
+      }}>
         <div className="button-container" style={{ background: '#F9FAFF' }}>
           <div>
-            <img src="https://cashfreelogo.cashfree.com/cashfreepayments/logosvgs/Group_4355.svg" alt="logo" className="logo-container" />
+            {isOutsideIndia ? (
+              // Stripe logo for international users
+              <div style={{
+                width: '36px',
+                height: '36px',
+                background: 'white',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontWeight: 'bold',
+                color: '#635BFF',
+                fontSize: '12px'
+              }}>
+                S
+              </div>
+            ) : (
+              // Cashfree logo for Indian users
+              <img src="https://cashfreelogo.cashfree.com/cashfreepayments/logosvgs/Group_4355.svg" alt="logo" className="logo-container" />
+            )}
           </div>
           <div className="text-container">
             <div style={{ fontFamily: 'Verdana', color: '#FF6B6B', marginBottom: '5px', fontSize: '14px' }}>
-              Pay Now
+              {userCountry ? getButtonText() : 'Detecting...'}
             </div>
             <div style={{ fontFamily: 'Verdana', color: '#FF6B6B', fontSize: '10px' }}>
-              <span>Powered By Cashfree</span>
-              <img src="https://cashfreelogo.cashfree.com/cashfreepayments/logosvgs/Group_4355.svg" alt="logo" className="seconday-logo-container" />
+              <span>Powered By {isOutsideIndia ? 'Stripe' : 'Cashfree'}</span>
+              {isOutsideIndia ? (
+                <div style={{
+                  width: '16px',
+                  height: '16px',
+                  background: 'white',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontWeight: 'bold',
+                  color: '#635BFF',
+                  fontSize: '8px',
+                  marginLeft: '6px'
+                }}>
+                  S
+                </div>
+              ) : (
+                <img src="https://cashfreelogo.cashfree.com/cashfreepayments/logosvgs/Group_4355.svg" alt="logo" className="seconday-logo-container" />
+              )}
             </div>
           </div>
         </div>
