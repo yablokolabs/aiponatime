@@ -8,7 +8,8 @@ export const LogoConfiguration = () => {
           <span className="font-semibold text-base overflow-x-auto">
             {" "}
             src/components/Layout/Header/Logo/index.tsx
-          </span>{" "}
+          </span>
+          {" "}
         </p>
         <div className="py-4 px-3 rounded-md bg-dark_grey mt-8">
           <div className="text-sm text-gray-400">
@@ -20,8 +21,7 @@ export const LogoConfiguration = () => {
             <p>height={50}</p>
             <p>quality={100}</p>
             <p>
-              style=&#x7B;width: &#x22;auto&#x22;, height:
-              &#x22;auto&#x22;&#x7D;
+              style=&#x7B;width: &#x22;auto&#x22;, height: &#x22;auto&#x22;&#x7D;
             </p>
             <p>/&#x3E;</p>
           </div>

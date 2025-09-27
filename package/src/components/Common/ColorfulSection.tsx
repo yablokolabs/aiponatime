@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { ReactNode } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
+import { ReactNode } from "react";
 
 type ColorfulSectionProps = {
   children: ReactNode;
@@ -18,32 +18,35 @@ export const ColorfulSection = ({
   children,
   title,
   subtitle,
-  className = '',
+  className = "",
   id,
-  gradientFrom = 'from-purple-50',
-  gradientTo = 'to-blue-50',
+  gradientFrom = "from-purple-50",
+  gradientTo = "to-blue-50",
   enableParticles = true,
 }: ColorfulSectionProps) => {
   return (
-    <section 
+    <section
       id={id}
       className={`relative py-20 overflow-hidden ${className}`}
     >
       {/* Background gradient */}
       <div className={`absolute inset-0 bg-gradient-to-br ${gradientFrom} ${gradientTo} opacity-80`} />
-      
+
       {/* Animated elements */}
       {enableParticles && (
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>
-          <div className="absolute top-0 -right-4 w-72 h-72 bg-yellow-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
-          <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000"></div>
+          <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob">
+          </div>
+          <div className="absolute top-0 -right-4 w-72 h-72 bg-yellow-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000">
+          </div>
+          <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000">
+          </div>
         </div>
       )}
 
       <div className="relative z-10 container mx-auto px-4">
         {(title || subtitle) && (
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -63,7 +66,7 @@ export const ColorfulSection = ({
             <div className="w-20 h-1 bg-gradient-to-r from-purple-400 to-pink-400 mx-auto rounded-full"></div>
           </motion.div>
         )}
-        
+
         {children}
       </div>
     </section>

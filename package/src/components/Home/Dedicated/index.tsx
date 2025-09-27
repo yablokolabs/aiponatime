@@ -1,6 +1,6 @@
 "use client";
-import React from "react";
 import Image from "next/image";
+import React from "react";
 
 const Dedicated = () => {
   return (
@@ -8,7 +8,7 @@ const Dedicated = () => {
       <div className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md)">
         <div className="grid grid-cols-1 lg:grid-cols-12">
           <Image
-            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/dedicated/spiral.svg`}
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/dedicated/spiral.svg`}
             height={272}
             width={686}
             alt="spiral-design"
@@ -19,7 +19,7 @@ const Dedicated = () => {
           <div className="col-span-12 lg:col-span-6 flex items-center justify-center px-4 lg:px-8">
             <div className="w-full max-w-xs">
               <Image
-                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/dedicated/tag1.jpeg`}
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/dedicated/tag1.jpeg`}
                 alt="Founder"
                 width={350}
                 height={450}
@@ -33,7 +33,7 @@ const Dedicated = () => {
           <div className="col-span-12 lg:col-span-6 flex flex-col justify-center">
             <div className="relative">
               <Image
-                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/dedicated/comma.svg`}
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/dedicated/comma.svg`}
                 alt="comma-image"
                 width={200}
                 height={106}
@@ -45,7 +45,8 @@ const Dedicated = () => {
                 “We believe every child deserves to see themselves as the hero of their own story.”
               </p>
               <p className="font-medium text-black/55 text-2xl mt-5 text-center lg:text-start px-4 lg:px-0">
-                With AIponATime™, each book is a personalized journey—bringing your child's imagination to life through vibrant characters, meaningful moments, and unforgettable adventures.
+                With AIponATime™, each book is a personalized journey—bringing your child's imagination to life through
+                vibrant characters, meaningful moments, and unforgettable adventures.
               </p>
             </div>
           </div>
@@ -57,7 +58,7 @@ const Dedicated = () => {
           <div className="col-span-12 lg:col-span-6 flex items-center justify-center px-4 lg:px-8">
             <div className="w-full max-w-xs">
               <Image
-                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/dedicated/tag2.jpeg`}
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/dedicated/tag2.jpeg`}
                 alt="Co-Founder"
                 width={350}
                 height={450}
@@ -71,7 +72,7 @@ const Dedicated = () => {
           <div className="col-span-12 lg:col-span-6 flex flex-col justify-center">
             <div className="relative">
               <Image
-                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/dedicated/comma.svg`}
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/dedicated/comma.svg`}
                 alt="comma-image"
                 width={200}
                 height={106}
@@ -83,7 +84,8 @@ const Dedicated = () => {
                 “Dedicated to sparking every child’s love for reading.”
               </p>
               <p className="font-medium text-black/55 text-2xl mt-5 text-center lg:text-start px-4 lg:px-0">
-                Parents share their child’s name, age, and interests, and our AI crafts a one-of-a-kind storybook adventure just for them.
+                Parents share their child’s name, age, and interests, and our AI crafts a one-of-a-kind storybook
+                adventure just for them.
               </p>
             </div>
           </div>

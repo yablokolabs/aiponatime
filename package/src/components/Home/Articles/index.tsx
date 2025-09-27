@@ -1,10 +1,10 @@
 "use client";
-import React from "react";
-import Image from "next/image";
-import Slider from "react-slick";
-import Link from "next/link";
 import { Article } from "@/app/api/data";
 import { Icon } from "@iconify/react";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+import Slider from "react-slick";
 
 const settings = {
   dots: true,

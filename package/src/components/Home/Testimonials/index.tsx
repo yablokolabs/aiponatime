@@ -1,9 +1,9 @@
 "use client";
+import { Testimonials } from "@/app/api/data";
+import { Icon } from "@iconify/react";
+import Image from "next/image";
 import React from "react";
 import Slider from "react-slick";
-import Image from "next/image";
-import { Icon } from "@iconify/react";
-import { Testimonials } from "@/app/api/data";
 
 interface TestimonialType {
   name: string;
@@ -102,19 +102,23 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ items }) => {
 
 const Testimonial: React.FC = () => {
   return (
-    <section className="bg-testimonial dark:bg-darkmode bg-cover bg-center overflow-hidden before:absolute before:w-full before:h-full before:bg-[url('/images/wework/elipse.svg')] before:bg-no-repeat before:bg-center" id="testimonial-section">
+    <section
+      className="bg-testimonial dark:bg-darkmode bg-cover bg-center overflow-hidden before:absolute before:w-full before:h-full before:bg-[url('/images/wework/elipse.svg')] before:bg-no-repeat before:bg-center"
+      id="testimonial-section"
+    >
       <div className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md)">
         <div className="">
           <div className="text-center">
-            <h3 id="testimonials" className="text-center text-4xl sm:text-5xl md:text-6xl font-black px-4 sm:px-8 md:mx-12 lg:mx-24">
+            <h3
+              id="testimonials"
+              className="text-center text-4xl sm:text-5xl md:text-6xl font-black px-4 sm:px-8 md:mx-12 lg:mx-24"
+            >
               Where Imagination Meets Personalization.
             </h3>
           </div>
           <div className="mt-20">
             <Slider {...settings}>
-              {Testimonials.map((items, i) => (
-                <TestimonialCard key={i} items={items} />
-              ))}
+              {Testimonials.map((items, i) => <TestimonialCard key={i} items={items} />)}
             </Slider>
           </div>
         </div>

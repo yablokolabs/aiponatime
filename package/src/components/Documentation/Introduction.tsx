@@ -1,12 +1,12 @@
 "use client";
-import Image from "next/image";
+import axiosImg from "/public/images/documentation/axios.svg";
 import nextImg from "/public/images/documentation/Categories=Nextjs.svg";
 import reactImg from "/public/images/documentation/Categories=React.svg";
 import tailwindImg from "/public/images/documentation/Categories=Tailwind.svg";
-import nextauthImg from "/public/images/documentation/nextauth.png";
 import typescriptImg from "/public/images/documentation/Categories=Typescript.svg";
-import axiosImg from "/public/images/documentation/axios.svg";
+import nextauthImg from "/public/images/documentation/nextauth.png";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import Image from "next/image";
 import { useState } from "react";
 import { DocNavigation } from "./DocNavigation";
 
@@ -65,8 +65,8 @@ export const Introduction = () => {
         </div>
 
         <div className="w-full flex justify-between lg:gap-0 gap-6 lg:flex-nowrap flex-wrap p-6 rounded-md border border-dark_border/60">
-          {PackageVersions &&
-            PackageVersions.map((item) => {
+          {PackageVersions
+            && PackageVersions.map((item) => {
               return (
                 <div
                   key={item.id}
@@ -87,23 +87,22 @@ export const Introduction = () => {
         </div>
         <div className="mt-5">
           <p className="text-base font-medium text-muted/60">
-            Desgy Tailwind NextJs Template is built with Tailwindcss and
-            Nextjs.
+            Desgy Tailwind NextJs Template is built with Tailwindcss and Nextjs.
           </p>
           <p className="text-base font-medium text-muted/60">
-            These theme is ready to use and you can totally customize as per
-            your requirement.
+            These theme is ready to use and you can totally customize as per your requirement.
           </p>
           <p className="text-base font-medium text-muted/60">
-            For Customize, You should have knowledge of NextJs, ReactJs,
-            Tailwind and JSX to be able to modify these template.
+            For Customize, You should have knowledge of NextJs, ReactJs, Tailwind and JSX to be able to modify these
+            template.
           </p>
         </div>
       </div>
 
       <div
-        className={`lg:hidden block fixed top-0 right-0 h-full w-full bg-white dark:bg-dark shadow-lg transform transition-transform duration-300 max-w-xs ${docNavbarOpen ? "translate-x-0" : "translate-x-full"
-          } z-50`}
+        className={`lg:hidden block fixed top-0 right-0 h-full w-full bg-white dark:bg-dark shadow-lg transform transition-transform duration-300 max-w-xs ${
+          docNavbarOpen ? "translate-x-0" : "translate-x-full"
+        } z-50`}
       >
         <div className="flex items-center justify-between p-4">
           <h2 className="text-lg font-bold text-midnight_text dark:text-black">

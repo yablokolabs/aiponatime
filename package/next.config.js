@@ -1,12 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
+  output: "export",
   images: {
     unoptimized: true,
   },
   trailingSlash: true,
   skipTrailingSlashRedirect: true,
-  generateBuildId: async () => 'build',
+  generateBuildId: async () => "build",
   experimental: {
     // Enable any experimental features here if needed
   },

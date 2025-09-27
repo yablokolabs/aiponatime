@@ -1,12 +1,12 @@
 "use client";
+import Loader from "@/components/Common/Loader";
+import Logo from "@/components/Layout/Header/Logo";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import SocialSignIn from "../SocialSignIn";
-import Logo from "@/components/Layout/Header/Logo"
-import Loader from "@/components/Common/Loader";
 
 interface SigninProps {
   onSwitchToSignUp?: () => void;
@@ -26,14 +26,14 @@ const Signin = ({ onSwitchToSignUp }: SigninProps = {}) => {
     e.preventDefault();
 
     setLoading(true);
-    
+
     // Demo authentication - replace with real NextAuth setup
     if (loginData.email && loginData.password) {
       // Simulate API call
       setTimeout(() => {
         toast.success("Login successful! Welcome back!");
         setLoading(false);
-        
+
         // Close modal if it's being used in header
         if (onSwitchToSignUp) {
           // This indicates we're in a modal, so we should close it
@@ -46,7 +46,7 @@ const Signin = ({ onSwitchToSignUp }: SigninProps = {}) => {
       setLoading(false);
       toast.error("Please enter both email and password");
     }
-    
+
     // Uncomment below for real NextAuth integration:
     /*
     signIn("credentials", { ...loginData, redirect: false })
@@ -91,9 +91,7 @@ const Signin = ({ onSwitchToSignUp }: SigninProps = {}) => {
           <input
             type="email"
             placeholder="Email"
-            onChange={(e) =>
-              setLoginData({ ...loginData, email: e.target.value })
-            }
+            onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
             className="w-full rounded-md border border-dark_border/60 border-solid bg-transparent px-5 py-3 text-base text-dark outline-hidden transition placeholder:text-grey focus:border-primary focus-visible:shadow-none text-white dark:focus:border-primary"
           />
         </div>
@@ -101,9 +99,7 @@ const Signin = ({ onSwitchToSignUp }: SigninProps = {}) => {
           <input
             type="password"
             placeholder="Password"
-            onChange={(e) =>
-              setLoginData({ ...loginData, password: e.target.value })
-            }
+            onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
             className="w-full rounded-md border border-dark_border/60 border-solid bg-transparent px-5 py-3 text-base text-dark outline-hidden transition placeholder:text-grey focus:border-primary focus-visible:shadow-none text-white dark:focus:border-primary"
           />
         </div>
@@ -125,18 +121,20 @@ const Signin = ({ onSwitchToSignUp }: SigninProps = {}) => {
         Forgot Password?
       </Link>
       <p className="text-body-secondary text-white text-base">
-        Not a member yet?{" "}
-        {onSwitchToSignUp ? (
-          <button 
-            onClick={onSwitchToSignUp}
-            className="text-primary hover:underline">
-            Sign Up
-          </button>
-        ) : (
-          <Link href="/signup" className="text-primary hover:underline">
-            Sign Up
-          </Link>
-        )}
+        Not a member yet? {onSwitchToSignUp
+          ? (
+            <button
+              onClick={onSwitchToSignUp}
+              className="text-primary hover:underline"
+            >
+              Sign Up
+            </button>
+          )
+          : (
+            <Link href="/signup" className="text-primary hover:underline">
+              Sign Up
+            </Link>
+          )}
       </p>
     </>
   );

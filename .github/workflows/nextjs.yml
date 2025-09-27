@@ -2,9 +2,9 @@ name: Deploy to GitHub Pages
 
 # Grant OIDC and read access so deploy-pages can fetch the id-token
 permissions:
-  id-token: write      # allow OIDC token requests
+  id-token: write # allow OIDC token requests
   pages: write
-  contents: read       # allow checkout
+  contents: read # allow checkout
 
 on:
   push:
@@ -29,9 +29,9 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20.x'
-          cache: 'npm'
-          cache-dependency-path: '**/package-lock.json'
+          node-version: "20.x"
+          cache: "npm"
+          cache-dependency-path: "**/package-lock.json"
 
       - name: Install dependencies
         run: npm ci
@@ -42,29 +42,29 @@ jobs:
           cat > update-refs.js << 'EOL'
           const fs = require('fs');
           const path = require('path');
-          
+
           // Function to process files recursively
           function processDirectory(directory) {
             const files = fs.readdirSync(directory);
-            
+
             files.forEach(file => {
               const fullPath = path.join(directory, file);
               const stat = fs.statSync(fullPath);
-              
+
               if (stat.isDirectory()) {
                 processDirectory(fullPath);
               } else if (file.match(/\.(js|jsx|tsx|ts)$/)) {
                 let content = fs.readFileSync(fullPath, 'utf8');
                 const originalContent = content;
-                
+
                 // Replace image references to use WebP when available
                 content = content.replace(
-                  /(['"])(.*?\.(?:jpg|jpeg|png))(?!\.webp)(['"])/g, 
+                  /(['"])(.*?\.(?:jpg|jpeg|png))(?!\.webp)(['"])/g,
                   (match, quote1, imgPath, quote2) => {
                     const webpPath = imgPath.replace(/\.(jpg|jpeg|png)$/i, '.webp');
                     const fullImgPath = path.join(process.cwd(), 'public', imgPath);
                     const fullWebpPath = path.join(process.cwd(), 'public', webpPath);
-                    
+
                     // Check if WebP version exists
                     if (fs.existsSync(fullWebpPath)) {
                       console.log(`✅ Replaced ${imgPath} with ${webpPath}`);
@@ -73,7 +73,7 @@ jobs:
                     return match;
                   }
                 );
-                
+
                 // Write back if changed
                 if (content !== originalContent) {
                   fs.writeFileSync(fullPath, content, 'utf8');
@@ -82,11 +82,11 @@ jobs:
               }
             });
           }
-          
+
           // Start processing from the src directory
           processDirectory(path.join(process.cwd(), 'src'));
           EOL
-          
+
           # Run the script
           node update-refs.js
 
@@ -96,7 +96,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'package/out'
+          path: "package/out"
 
   deploy:
     environment:

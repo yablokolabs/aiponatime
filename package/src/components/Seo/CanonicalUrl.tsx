@@ -1,10 +1,10 @@
-import { usePathname } from 'next/navigation';
-import Head from 'next/head';
+import Head from "next/head";
+import { usePathname } from "next/navigation";
 
 export default function CanonicalUrl() {
   const pathname = usePathname();
-  const baseUrl = 'https://aiponatime.com';
-  const canonicalUrl = `${baseUrl}${pathname === '/' ? '' : pathname}`.split('?')[0];
+  const baseUrl = "https://aiponatime.com";
+  const canonicalUrl = `${baseUrl}${pathname === "/" ? "" : pathname}`.split("?")[0];
 
   return (
     <Head>

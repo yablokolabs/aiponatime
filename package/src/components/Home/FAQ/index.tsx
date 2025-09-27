@@ -1,7 +1,7 @@
-"use client"
-import React from "react";
-import { Icon } from "@iconify/react";
+"use client";
 import { Disclosure } from "@headlessui/react";
+import { Icon } from "@iconify/react";
+import React from "react";
 
 const FAQ = () => {
   return (
@@ -18,17 +18,19 @@ const FAQ = () => {
                 {({ open }) => (
                   <div>
                     <Disclosure.Button className="flex w-full justify-between items-center text-left text-2xl font-medium focus:outline-hidden ">
-                      <span className="text-black">How does AIPonATime<sup className="text-sm">™</sup> personalize my child's storybook?</span>
+                      <span className="text-black">
+                        How does AIPonATime<sup className="text-sm">™</sup> personalize my child's storybook?
+                      </span>
                       <div
-                        className={`h-5 w-5 transform transition-transform duration-300 ${open ? "rotate-180" : ""
-                          }`}
+                        className={`h-5 w-5 transform transition-transform duration-300 ${open ? "rotate-180" : ""}`}
                       >
                         <Icon icon="lucide:chevron-up" width="20" height="20" />
                       </div>
                     </Disclosure.Button>
                     <Disclosure.Panel className="text-16 text-black/50 font-normal text-left pt-4 mt-6 border-t border-border">
                       <div className="lg:max-w-70%">
-                        We ask for your child's name, age, and interests. Our AI then crafts a unique storyline and custom illustrations that place your child at the heart of the adventure.
+                        We ask for your child's name, age, and interests. Our AI then crafts a unique storyline and
+                        custom illustrations that place your child at the heart of the adventure.
                       </div>
                     </Disclosure.Panel>
                   </div>
@@ -42,15 +44,15 @@ const FAQ = () => {
                     <Disclosure.Button className="flex w-full justify-between items-center rounded-lg text-left text-2xl font-medium focus:outline-hidden">
                       <span className="text-black">What formats will I receive?</span>
                       <div
-                        className={`h-5 w-5 transform transition-transform duration-300 ${open ? "rotate-180" : ""
-                          }`}
+                        className={`h-5 w-5 transform transition-transform duration-300 ${open ? "rotate-180" : ""}`}
                       >
                         <Icon icon="lucide:chevron-up" width="20" height="20" />
                       </div>
                     </Disclosure.Button>
                     <Disclosure.Panel className="text-base text-black/50 pt-4 mt-6 text-left border-t border-border">
                       <div className="lg:max-w-70%">
-                        Every purchase includes a high-resolution PDF delivered instantly. The Explorer and Legend editions also come with a premium hardcover shipped straight to your doorstep.
+                        Every purchase includes a high-resolution PDF delivered instantly. The Explorer and Legend
+                        editions also come with a premium hardcover shipped straight to your doorstep.
                       </div>
                     </Disclosure.Panel>
                   </>
@@ -65,15 +67,15 @@ const FAQ = () => {
                     <Disclosure.Button className="flex w-full justify-between items-center rounded-lg text-left text-2xl font-medium focus:outline-hidden">
                       <span className="text-black">How long will it take to receive the book?</span>
                       <div
-                        className={`h-5 w-5 transform transition-transform duration-300 ${open ? "rotate-180" : ""
-                          }`}
+                        className={`h-5 w-5 transform transition-transform duration-300 ${open ? "rotate-180" : ""}`}
                       >
                         <Icon icon="lucide:chevron-up" width="20" height="20" />
                       </div>
                     </Disclosure.Button>
                     <Disclosure.Panel className="text-base text-black/50 pt-4 mt-6 font-normal text-left border-t border-border">
                       <div className="lg:max-w-70%">
-                        Digital PDFs are ready within 1-2 business days. Printed books are produced in 5-7 business days and shipped worldwide; delivery times vary by location.
+                        Digital PDFs are ready within 1-2 business days. Printed books are produced in 5-7 business days
+                        and shipped worldwide; delivery times vary by location.
                       </div>
                     </Disclosure.Panel>
                   </>
@@ -87,15 +89,17 @@ const FAQ = () => {
                     <Disclosure.Button className="flex w-full justify-between items-center rounded-lg text-left text-2xl font-medium focus:outline-hidden">
                       <span className="text-black">Why choose physical books in the digital age?</span>
                       <div
-                        className={`h-5 w-5 transform transition-transform duration-300 ${open ? "rotate-180" : ""
-                          }`}
+                        className={`h-5 w-5 transform transition-transform duration-300 ${open ? "rotate-180" : ""}`}
                       >
                         <Icon icon="lucide:chevron-up" width="20" height="20" />
                       </div>
                     </Disclosure.Button>
                     <Disclosure.Panel className="text-base text-black/50 pt-4 mt-6 font-normal text-left border-t border-border">
                       <div className="lg:max-w-70%">
-                        While we offer digital formats, physical books provide unique benefits for children's development. Research shows that non-screen reading time can boost IQ, enhance focus, and improve cognitive development. Physical books also help children engage more deeply with the content and develop better reading habits.
+                        While we offer digital formats, physical books provide unique benefits for children's
+                        development. Research shows that non-screen reading time can boost IQ, enhance focus, and
+                        improve cognitive development. Physical books also help children engage more deeply with the
+                        content and develop better reading habits.
                       </div>
                     </Disclosure.Panel>
                   </>
@@ -109,15 +113,16 @@ const FAQ = () => {
                     <Disclosure.Button className="flex w-full justify-between items-center rounded-lg text-left text-2xl font-medium focus:outline-hidden">
                       <span className="text-black">Why be the hero of your own book?</span>
                       <div
-                        className={`h-5 w-5 transform transition-transform duration-300 ${open ? "rotate-180" : ""
-                          }`}
+                        className={`h-5 w-5 transform transition-transform duration-300 ${open ? "rotate-180" : ""}`}
                       >
                         <Icon icon="lucide:chevron-up" width="20" height="20" />
                       </div>
                     </Disclosure.Button>
                     <Disclosure.Panel className="text-base text-black/50 pt-4 mt-6 font-normal text-left border-t border-border">
                       <div className="lg:max-w-70%">
-                        Research shows that when children see themselves as the heroes of their own stories, they develop a stronger love for reading and build self-confidence that carries into every part of their daily lives.
+                        Research shows that when children see themselves as the heroes of their own stories, they
+                        develop a stronger love for reading and build self-confidence that carries into every part of
+                        their daily lives.
                       </div>
                     </Disclosure.Panel>
                   </>

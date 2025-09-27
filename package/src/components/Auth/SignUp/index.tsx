@@ -1,11 +1,11 @@
 "use client";
+import Loader from "@/components/Common/Loader";
+import Logo from "@/components/Layout/Header/Logo";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import SocialSignUp from "../SocialSignUp";
-import Logo from "@/components/Layout/Header/Logo";
-import { useState } from "react";
-import Loader from "@/components/Common/Loader";
 interface SignUpProps {
   onSwitchToSignIn?: () => void;
 }
@@ -28,7 +28,7 @@ const SignUp = ({ onSwitchToSignIn }: SignUpProps = {}) => {
       setTimeout(() => {
         toast.success("Successfully registered! Welcome to AIponATime! 🎉");
         setLoading(false);
-        
+
         // Switch to sign in if in modal, otherwise redirect
         if (onSwitchToSignIn) {
           setTimeout(() => {
@@ -42,7 +42,7 @@ const SignUp = ({ onSwitchToSignIn }: SignUpProps = {}) => {
       setLoading(false);
       toast.error("Please fill in all required fields");
     }
-    
+
     // Uncomment below for real API integration:
     /*
     fetch("/api/register", {
@@ -130,17 +130,20 @@ const SignUp = ({ onSwitchToSignIn }: SignUpProps = {}) => {
 
       <p className="text-body-secondary text-white text-base">
         Already have an account?
-        {onSwitchToSignIn ? (
-          <button 
-            onClick={onSwitchToSignIn}
-            className="pl-2 text-primary hover:underline">
-            Sign In
-          </button>
-        ) : (
-          <Link href="/signin" className="pl-2 text-primary hover:underline">
-            Sign In
-          </Link>
-        )}
+        {onSwitchToSignIn
+          ? (
+            <button
+              onClick={onSwitchToSignIn}
+              className="pl-2 text-primary hover:underline"
+            >
+              Sign In
+            </button>
+          )
+          : (
+            <Link href="/signin" className="pl-2 text-primary hover:underline">
+              Sign In
+            </Link>
+          )}
       </p>
     </>
   );

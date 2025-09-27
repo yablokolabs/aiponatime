@@ -1,6 +1,6 @@
 "use client";
-import React from "react";
 import Link from "next/link";
+import React from "react";
 
 const Beliefs = () => {
   return (
@@ -14,10 +14,11 @@ const Beliefs = () => {
               beliefs
             </h2>
             <h3 className="text-6xl sm:text-65xl font-bold text-white mb-5 text-center sm:text-start">
-              Imagination<span className="text-white/60"> and wonder are at the heart of every story we create.</span>
+              Imagination<span className="text-white/60">and wonder are at the heart of every story we create.</span>
             </h3>
             <h5 className="text-white/75 pt-2 mb-16 text-center sm:text-start">
-              Every child deserves to see themselves as the hero. Our AI crafts unique adventures that nurture curiosity, empathy, and a lifelong love of reading.
+              Every child deserves to see themselves as the hero. Our AI crafts unique adventures that nurture
+              curiosity, empathy, and a lifelong love of reading.
             </h5>
             <div className="text-center sm:text-start">
               <Link
@@ -39,7 +40,8 @@ const Beliefs = () => {
                 <span className="text-primary">Create</span> a magical, personalized book for your child.
               </h3>
               <h5 className="pt-2 mb-16 text-center sm:text-start text-black/75 text-lg">
-                Our platform makes it easy for parents to turn their child’s dreams and interests into a one-of-a-kind keepsake.
+                Our platform makes it easy for parents to turn their child’s dreams and interests into a one-of-a-kind
+                keepsake.
               </h5>
               <div className="text-center sm:text-start">
                 <Link

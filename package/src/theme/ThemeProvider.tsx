@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { createContext, useContext, ReactNode } from 'react';
+import { createContext, ReactNode, useContext } from "react";
 
 type ThemeColors = {
   primary: string;
@@ -15,27 +15,27 @@ type ThemeColors = {
 };
 
 const defaultTheme: ThemeColors = {
-  primary: '#6C63FF',
-  secondary: '#FF6B6B',
-  accent: '#4ECDC4',
-  background: '#F9FAFF',
-  text: '#2D3748',
-  success: '#48BB78',
-  warning: '#F6E05E',
-  error: '#F56565',
-  info: '#4299E1',
+  primary: "#6C63FF",
+  secondary: "#FF6B6B",
+  accent: "#4ECDC4",
+  background: "#F9FAFF",
+  text: "#2D3748",
+  success: "#48BB78",
+  warning: "#F6E05E",
+  error: "#F56565",
+  info: "#4299E1",
 };
 
 const rainbowTheme: ThemeColors = {
-  primary: '#FF6B6B',
-  secondary: '#FFD166',
-  accent: '#06D6A0',
-  background: '#F9FAFF',
-  text: '#2D3748',
-  success: '#48BB78',
-  warning: '#F6E05E',
-  error: '#EF476F',
-  info: '#118AB2',
+  primary: "#FF6B6B",
+  secondary: "#FFD166",
+  accent: "#06D6A0",
+  background: "#F9FAFF",
+  text: "#2D3748",
+  success: "#48BB78",
+  warning: "#F6E05E",
+  error: "#EF476F",
+  info: "#118AB2",
 };
 
 type ThemeContextType = {
@@ -58,18 +58,18 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <ThemeContext.Provider value={{ colors, isRainbow, toggleTheme: () => {} }}>
-      <div 
+      <div
         className="min-h-screen transition-colors duration-300"
         style={{
-          '--color-primary': colors.primary,
-          '--color-secondary': colors.secondary,
-          '--color-accent': colors.accent,
-          '--color-background': colors.background,
-          '--color-text': colors.text,
-          '--color-success': colors.success,
-          '--color-warning': colors.warning,
-          '--color-error': colors.error,
-          '--color-info': colors.info,
+          "--color-primary": colors.primary,
+          "--color-secondary": colors.secondary,
+          "--color-accent": colors.accent,
+          "--color-background": colors.background,
+          "--color-text": colors.text,
+          "--color-success": colors.success,
+          "--color-warning": colors.warning,
+          "--color-error": colors.error,
+          "--color-info": colors.info,
         } as React.CSSProperties}
       >
         {children}

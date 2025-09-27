@@ -1,8 +1,8 @@
 "use client";
-import { useState } from "react";
 import Link from "next/link";
-import { HeaderItem } from "../../../../types/menu";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { HeaderItem } from "../../../../types/menu";
 
 const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
   const [submenuOpen, setSubmenuOpen] = useState(false);
@@ -28,7 +28,8 @@ const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
           path === item.href ? "text-black/75" : "text-black/75"
         }`}
       >
-        <span className="absolute inset-0 bg-gradient-to-r from-pink-300/30 via-purple-300/30 to-blue-300/30 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300 opacity-0 group-hover:opacity-100"></span>
+        <span className="absolute inset-0 bg-gradient-to-r from-pink-300/30 via-purple-300/30 to-blue-300/30 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300 opacity-0 group-hover:opacity-100">
+        </span>
         <span className="relative z-10">
           {item.label}
         </span>

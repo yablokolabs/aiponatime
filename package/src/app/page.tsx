@@ -1,20 +1,20 @@
-import React from "react";
-import Hero from "@/components/Home/Hero";
+import GhibliGenerator from "@/components/GhibliGenerator";
 import Aboutus from "@/components/Home/AboutUs";
+import Articles from "@/components/Home/Articles";
+import Beliefs from "@/components/Home/Beliefs";
 import Dedicated from "@/components/Home/Dedicated";
 import Digital from "@/components/Home/Digital";
-import Beliefs from "@/components/Home/Beliefs";
-import Work from "@/components/Home/Work";
-import Team from "@/components/Home/Team";
-import Featured from "@/components/Home/Featured";
-import Manage from "@/components/Home/Manage";
 import FAQ from "@/components/Home/FAQ";
-import Testimonial from "@/components/Home/Testimonials";
-import Articles from "@/components/Home/Articles";
-import Join from "@/components/Home/Joinus";
+import Featured from "@/components/Home/Featured";
+import Hero from "@/components/Home/Hero";
 import Insta from "@/components/Home/Insta";
-import GhibliGenerator from "@/components/GhibliGenerator";
+import Join from "@/components/Home/Joinus";
+import Manage from "@/components/Home/Manage";
+import Team from "@/components/Home/Team";
+import Testimonial from "@/components/Home/Testimonials";
+import Work from "@/components/Home/Work";
 import { Metadata } from "next";
+import React from "react";
 export const metadata: Metadata = {
   title: "AIponATime™ AI-Powered Personalized Storytelling for Kids",
 };

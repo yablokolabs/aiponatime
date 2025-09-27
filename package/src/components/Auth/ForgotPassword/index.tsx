@@ -1,11 +1,11 @@
 "use client";
+import Loader from "@/components/Common/Loader";
+import axios from "axios";
+import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import axios from "axios";
-import Loader from "@/components/Common/Loader";
-import Link from "next/link";
-import Image from "next/image";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -57,14 +57,14 @@ const ForgotPassword = () => {
               <div className="mb-10 text-center">
                 <Link href="/" className="mx-auto inline-block max-w-[160px]">
                   <Image
-                    src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/logo/logo.svg`}
+                    src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/logo/logo.svg`}
                     alt="logo"
                     width={140}
                     height={30}
                     className="dark:hidden"
                   />
                   <Image
-                    src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/logo/logo-white.svg`}
+                    src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/logo/logo-white.svg`}
                     alt="logo"
                     width={140}
                     height={30}

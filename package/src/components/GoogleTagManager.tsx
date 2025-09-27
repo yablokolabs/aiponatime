@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import Script from 'next/script';
+import Script from "next/script";
 
 export const GoogleTagManager = () => {
-  const GTM_ID = 'GTM-WM7L7GJ8';
+  const GTM_ID = "GTM-WM7L7GJ8";
 
-  if (process.env.NODE_ENV !== 'production') {
+  if (process.env.NODE_ENV !== "production") {
     return null; // Only include GTM in production
   }
 
@@ -25,9 +25,9 @@ export const GoogleTagManager = () => {
 };
 
 export const GoogleTagManagerNoScript = () => {
-  const GTM_ID = 'GTM-WM7L7GJ8';
+  const GTM_ID = "GTM-WM7L7GJ8";
 
-  if (process.env.NODE_ENV !== 'production') {
+  if (process.env.NODE_ENV !== "production") {
     return null; // Only include GTM in production
   }
 
@@ -37,7 +37,7 @@ export const GoogleTagManagerNoScript = () => {
         src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
         height="0"
         width="0"
-        style={{ display: 'none', visibility: 'hidden' }}
+        style={{ display: "none", visibility: "hidden" }}
       />
     </noscript>
   );

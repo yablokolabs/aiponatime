@@ -1,9 +1,9 @@
 "use client";
-import { useState } from "react";
+import Loader from "@/components/Common/Loader";
 import { signIn } from "next-auth/react";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import { validateEmail } from "../../../utils/validateEmail";
-import Loader from "@/components/Common/Loader";
 
 const MagicLink = () => {
   const [email, setEmail] = useState("");
@@ -58,7 +58,7 @@ const MagicLink = () => {
           type="submit"
           className="flex w-full cursor-pointer items-center justify-center rounded-md border border-primary bg-[#102C46] px-5 py-3 text-base text-white transition duration-300 ease-in-out hover:bg-[#102C46]"
         >
-          Send Magic Link 
+          Send Magic Link
         </button>
       </div>
     </form>

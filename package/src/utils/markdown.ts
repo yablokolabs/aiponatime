@@ -8,7 +8,7 @@ export function getPostSlugs() {
   return fs.readdirSync(postsDirectory);
 }
 
-export function getPostBySlug(slug: string, fields: string[] = []) {  
+export function getPostBySlug(slug: string, fields: string[] = []) {
   const realSlug = slug.replace(/\.mdx$/, "");
   const fullPath = join(postsDirectory, `${realSlug}.mdx`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
@@ -24,7 +24,7 @@ export function getPostBySlug(slug: string, fields: string[] = []) {
   function processImages(content: string) {
     // You can modify this function to handle image processing
     // For example, replace image paths with actual HTML image tags
-    return content.replace(/!\[.*?\]\((.*?)\)/g, '<img src="$1" alt="" />');
+    return content.replace(/!\[.*?\]\((.*?)\)/g, "<img src=\"$1\" alt=\"\" />");
   }
 
   // Ensure only the minimal needed data is exposed

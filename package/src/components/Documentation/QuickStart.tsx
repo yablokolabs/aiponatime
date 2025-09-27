@@ -8,7 +8,8 @@ export const QuickStart = () => {
           Before proceeding, you need to have the latest stable{" "}
           <a href="https://nodejs.org/" className="text-primary">
             node.js
-          </a>{" "}
+          </a>
+          {" "}
         </p>
         <h6 className="mt-4 mb-2 text-black font-medium text-base">
           Recommended environment:
@@ -21,8 +22,7 @@ export const QuickStart = () => {
       <div className="p-6 rounded-md border mt-6 border-dark_border/60">
         <h6 className="text-black text-lg font-medium">2. Install</h6>
         <p className="text-base font-medium text-muted/60">
-          Open package folder and install its dependencies. We recommanded yarn
-          or npm.{" "}
+          Open package folder and install its dependencies. We recommanded yarn or npm.{" "}
         </p>
         <h6 className="mt-4 mb-2 text-black text-dark font-medium text-base">
           1) Install with npm:
@@ -53,8 +53,7 @@ export const QuickStart = () => {
           <p className="text-sm text-black/60">npm run dev or yarn run dev</p>
         </div>
         <p className="text-base font-medium text-muted/60 my-4">
-          This command will start a local webserver{" "}
-          <span className="dark:text-black">http://localhost:3000:</span>
+          This command will start a local webserver <span className="dark:text-black">http://localhost:3000:</span>
         </p>
         <div className="py-4 px-3 rounded-md bg-dark_grey">
           <p className="text-sm text-black/60">

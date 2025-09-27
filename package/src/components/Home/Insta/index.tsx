@@ -8,7 +8,7 @@ const Insta = () => {
         {/* Image Container 1 */}
         <div className="relative mx-auto">
           <Image
-            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/insta/insta1.png`}
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/insta/insta1.png`}
             width={306}
             height={306}
             alt="Instagram post 1"
@@ -19,7 +19,7 @@ const Insta = () => {
         {/* Image Container 2 */}
         <div className="relative mx-auto">
           <Image
-            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/insta/insta2.png`}
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/insta/insta2.png`}
             width={306}
             height={306}
             alt="Instagram post 2"
@@ -30,7 +30,7 @@ const Insta = () => {
         {/* Image Container 3 */}
         <div className="relative mx-auto">
           <Image
-            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/insta/insta3.png`}
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/insta/insta3.png`}
             width={306}
             height={306}
             alt="Instagram post 3"
@@ -41,7 +41,7 @@ const Insta = () => {
         {/* Image Container 4 */}
         <div className="relative mx-auto">
           <Image
-            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/insta/insta4.png`}
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/insta/insta4.png`}
             width={306}
             height={306}
             alt="Instagram post 4"

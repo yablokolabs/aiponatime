@@ -1,9 +1,9 @@
 "use client";
 
-import React from "react";
-import Link from "next/link";
-import Image from "next/image";
 import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 
 const Work = () => {
   return (
@@ -27,7 +27,7 @@ const Work = () => {
           className="relative"
         >
           <Image
-            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/work/book-cover.jpg`}
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/work/book-cover.jpg`}
             alt="Sample Book Cover"
             width={350}
             height={450}
@@ -41,7 +41,6 @@ const Work = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-center"
         >
-
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -50,7 +49,12 @@ const Work = () => {
           >
             Discover our featured sample book that showcases our work and expertise.
           </motion.p>
-          <Link href="https://a.co/d/di6cvBB" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+          <Link
+            href="https://a.co/d/di6cvBB"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          >
             View Sample Book
           </Link>
         </motion.div>

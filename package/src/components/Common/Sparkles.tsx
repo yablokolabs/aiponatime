@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 
 const Sparkles = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -9,7 +9,7 @@ const Sparkles = () => {
     if (!canvasRef.current) return;
 
     const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     // Set canvas size to parent container
@@ -22,12 +22,12 @@ const Sparkles = () => {
     };
 
     resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener("resize", resizeCanvas);
 
     // Sparkle properties
     const sparkles: { x: number; y: number; size: number; speed: number; alpha: number; angle: number }[] = [];
     const maxSparkles = 15;
-    const colors = ['#60a5fa', '#a78bfa', '#f472b6', '#fbbf24', '#34d399'];
+    const colors = ["#60a5fa", "#a78bfa", "#f472b6", "#fbbf24", "#34d399"];
 
     // Create initial sparkles
     for (let i = 0; i < maxSparkles; i++) {
@@ -41,7 +41,7 @@ const Sparkles = () => {
         size: Math.random() * 3 + 1,
         speed: Math.random() * 0.5 + 0.1,
         alpha: Math.random() * 0.5 + 0.5,
-        angle: Math.random() * Math.PI * 2
+        angle: Math.random() * Math.PI * 2,
       });
     }
 
@@ -51,7 +51,7 @@ const Sparkles = () => {
         sparkle.angle += 0.02;
         sparkle.x += Math.cos(sparkle.angle) * 0.3;
         sparkle.y += sparkle.speed;
-        
+
         // Reset sparkle if it goes off screen
         if (sparkle.y > canvas.height) {
           sparkle.y = -10;
@@ -62,17 +62,17 @@ const Sparkles = () => {
 
     function drawSparkles() {
       if (!ctx) return;
-      
+
       // Clear canvas with transparent background
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
+
       // Draw each sparkle
       for (const sparkle of sparkles) {
         ctx.save();
         ctx.globalAlpha = sparkle.alpha;
         ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
         ctx.beginPath();
-        
+
         // Draw a star shape
         const spikes = 5;
         const outerRadius = sparkle.size;
@@ -84,7 +84,7 @@ const Sparkles = () => {
 
         ctx.beginPath();
         ctx.moveTo(x, y - outerRadius);
-        
+
         for (let i = 0; i < spikes; i++) {
           x = sparkle.x + Math.cos(rot) * outerRadius;
           y = sparkle.y + Math.sin(rot) * outerRadius;
@@ -96,7 +96,7 @@ const Sparkles = () => {
           ctx.lineTo(x, y);
           rot += step;
         }
-        
+
         ctx.lineTo(sparkle.x, sparkle.y - outerRadius);
         ctx.closePath();
         ctx.fill();
@@ -105,17 +105,17 @@ const Sparkles = () => {
     }
 
     let animationId: number;
-    
+
     function animate() {
       updateSparkles();
       drawSparkles();
       animationId = requestAnimationFrame(animate);
     }
-    
+
     animate();
 
     return () => {
-      window.removeEventListener('resize', resizeCanvas);
+      window.removeEventListener("resize", resizeCanvas);
       cancelAnimationFrame(animationId);
     };
   }, []);
