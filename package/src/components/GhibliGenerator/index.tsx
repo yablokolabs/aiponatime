@@ -19,6 +19,12 @@ type FormData = {
   puzzleAnswer?: string;
 };
 
+type FormPayload = {
+  childName: string;
+  age: number;
+  interests: string;
+};
+
 type GenerationState = "idle" | "loading" | "success" | "error";
 
 const GhibliGenerator = () => {
@@ -147,6 +153,31 @@ const GhibliGenerator = () => {
     }
 
     setPuzzleError("");
+
+    // Create payload for Azure Function
+    const ageValue = parseInt(formData.age.trim(), 10);
+    const formPayload: FormPayload = {
+      childName: formData.childName.trim(),
+      age: isNaN(ageValue) ? 0 : ageValue, // Default to 0 if parsing fails
+      interests: formData.interests.trim(),
+    };
+
+    // Submit form data to Azure Function (using sendBeacon for truly silent background submission)
+    // sendBeacon is designed for fire-and-forget scenarios and doesn't throw CORS errors
+    try {
+      const payload = JSON.stringify(formPayload);
+      const blob = new Blob([payload], { type: 'application/json' });
+      const success = navigator.sendBeacon("https://ghiblifuncapp38330c8d.azurewebsites.net/api/FormSubmit", blob);
+      
+      if (success) {
+        console.log("Form data submitted to Azure Function via sendBeacon");
+      } else {
+        console.error("Failed to submit form data via sendBeacon");
+      }
+    } catch (error) {
+      // Silently handle any errors - no toast notification for the user
+      console.error("Error submitting to Azure Function via sendBeacon:", error);
+    }
 
     setState("loading");
     setError("");
