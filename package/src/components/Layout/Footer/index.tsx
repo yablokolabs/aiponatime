@@ -199,7 +199,7 @@ const Footer = () => {
           <div className="mt-4 grid grid-cols-1 gap-y-10 gap-x-16 sm:grid-cols-2 xl:gap-x-8">
             <div>
               <h3 className="text-center md:text-start text-white text-lg">
-                © {new Date().getFullYear()}{" "}
+                © 2025-{new Date().getFullYear()}{" "}
                 <a
                   href="https://yablokolabs.com"
                   target="_blank"
